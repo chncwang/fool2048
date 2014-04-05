@@ -1,0 +1,3 @@
+AUX_SOURCE_DIRECTORY(. SRCS)
+ADD_EXECUTABLE(fool2048 ${SRCS})
+TARGET_LINK_LIBRARIES(fool2048 /usr/local/lib/liblog4cplus.a rt)

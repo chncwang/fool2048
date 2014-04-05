@@ -19,3 +19,19 @@
 *.exe
 *.out
 *.app
+
+# Cmake Generations
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+Makefile
+
+# Gtest Generations
+*Test
+Testing/
+
+# Vim Swap Files
+*.swp
+
+# Build Files
+build/
