@@ -27,6 +27,7 @@ public:
   static const Number kEmpty = 0;
 
   Board();
+
   ~Board() = default;
 
   void Copy(const Board &board) {
@@ -55,6 +56,7 @@ private:
   class IndexLocationTable;
 
   friend ostream& operator<<(ostream &out, const Board &board);
+  friend bool IsEqual(const Board &a, const Board &b);
 
   std::array<std::array<Number, kBoardLength>, kBoardLength> numbers_;
 };

@@ -21,8 +21,6 @@ public:
   ~FullBoardTestable() = default;
 
   void Init(const Numbers &numbers);
-
-private:
   void SetNumber(int x, int y, Number number);
 };
 

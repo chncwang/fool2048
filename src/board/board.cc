@@ -126,3 +126,12 @@ ostream& operator<<(ostream &out, const Board &board) {
   return out;
 }
 
+bool IsEqual(const Board &a, const Board &b) {
+  for (int i=0; i<Board::kBoardLengthSquare; ++i) {
+    if (GetBoardNumber(a, i) != GetBoardNumber(b, i)) {
+      return false;
+    }
+  }
+
+  return true;
+}

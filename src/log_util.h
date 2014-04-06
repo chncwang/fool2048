@@ -15,5 +15,7 @@ void InitLogConfig();
 
 #define LOG_UTIL_DEBUG(expression) \
   LOG4CPLUS_DEBUG(log4cplus::Logger::getRoot(), LOG4CPLUS_TEXT(expression))
+#define LOG_UTIL_ERROR(expression) \
+  LOG4CPLUS_ERROR(log4cplus::Logger::getRoot(), LOG4CPLUS_TEXT(expression))
 
 #endif /* LOG_UTIL_H_ */

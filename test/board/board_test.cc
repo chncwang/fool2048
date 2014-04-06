@@ -79,12 +79,6 @@ TEST_F(BoardTest, ForEachLocation) {
   }
 }
 
-TEST_F(BoardTest, OperatorDoubleLeftArrow) {
-  Board board;
-  board.SetNumber(Location(2, 2), 2048);
-  LOG_UTIL_DEBUG("board" << board);
-}
-
 TEST_F(BoardTest, ToIndex) {
   ASSERT_EQ(Board::ToIndex(Location(0, 0)), 0);
   ASSERT_EQ(Board::ToIndex(Location(3, 3)), 15);
@@ -107,4 +101,32 @@ TEST_F(BoardTest, ToLocation) {
   ASSERT_TRUE(IsEqual(Board::ToLocation(11), Location(3, 2)));
   ASSERT_TRUE(IsEqual(Board::ToLocation(2), Location(2, 0)));
   ASSERT_TRUE(IsEqual(Board::ToLocation(13), Location(1, 3)));
+}
+
+TEST_F(BoardTest, OperatorDoubleLeftArrow) {
+  Board board;
+  board.SetNumber(Location(2, 2), 2048);
+  LOG_UTIL_DEBUG("board" << board);
+}
+
+TEST_F(BoardTest, IsEqual) {
+  Board board_a, board_b;
+  ASSERT_TRUE(IsEqual(board_a, board_b));
+
+  Location location_a(0, 0), location_b(2, 1), location_c(1, 3);
+  Number num_a(4), num_b(2048), num_c(4096);
+
+  board_a.SetNumber(location_a, num_a);
+  ASSERT_FALSE(IsEqual(board_a, board_b));
+  board_a.SetNumber(location_b, num_b);
+  ASSERT_FALSE(IsEqual(board_a, board_b));
+  board_a.SetNumber(location_c, num_c);
+  ASSERT_FALSE(IsEqual(board_a, board_b));
+
+  board_b.SetNumber(location_a, num_a);
+  ASSERT_FALSE(IsEqual(board_a, board_b));
+  board_b.SetNumber(location_b, num_b);
+  ASSERT_FALSE(IsEqual(board_a, board_b));
+  board_b.SetNumber(location_c, num_c);
+  ASSERT_TRUE(IsEqual(board_a, board_b));
 }

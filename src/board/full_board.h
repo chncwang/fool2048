@@ -46,12 +46,12 @@ public:
   DISALLOW_COPY_AND_ASSIGN(FullBoard);
 
 protected:
-  Board* GetBoard() {
-    return &board_;
+  void SetNumber(const Location &location, Number number) {
+    board_.SetNumber(location, number);
   }
 
-  int* EmptyNumberCountPointer() {
-    return &empty_number_count_;
+  void SetEmptyNumberCount(int empty_number_count) {
+    empty_number_count_ = empty_number_count;
   }
 
 private:
@@ -60,6 +60,7 @@ private:
 
   friend std::ostream& operator<<(std::ostream & out,
       const FullBoard &full_board);
+  friend bool IsEqual(const FullBoard &a, const FullBoard &b);
 
   Board board_;
   int empty_number_count_;

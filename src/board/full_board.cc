@@ -7,6 +7,8 @@
 
 #include "full_board.h"
 
+#include <cassert>
+
 #include "board/adding_number_move.h"
 #include "board/board_helper.h"
 #include "board/location.h"
@@ -103,4 +105,14 @@ void FullBoard::ValidateBeforeSetDouble(const Location &location) const {
 ostream& operator<<(ostream & out, const FullBoard &full_board) {
   return out << "[" << full_board.board_ << ", empty_number_count_: "
       << full_board.empty_number_count_ << "]";
+}
+
+bool IsEqual(const FullBoard &a, const FullBoard &b) {
+  bool result = IsEqual(a.board_, b.board_);
+  if (result) {
+  LOG_UTIL_DEBUG("a.empty_number_count_ " << a.empty_number_count_ <<
+      " b.empty_number_count_ " << b.empty_number_count_);
+    assert(a.empty_number_count_ == b.empty_number_count_);
+  }
+  return result;
 }
