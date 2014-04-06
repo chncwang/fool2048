@@ -12,7 +12,10 @@
 #include <chrono>
 #include <random>
 
-using namespace std;
+using std::mt19937;
+using std::uniform_int_distribution;
+using std::uniform_real_distribution;
+namespace chrono = std::chrono;
 
 namespace {
 

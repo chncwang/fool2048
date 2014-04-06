@@ -7,6 +7,7 @@
 
 #include "default_adding_number_player.h"
 
+#include "board/adding_number_move.h"
 #include "board/board.h"
 #include "board/full_board.h"
 #include "board/full_board_helper.h"
@@ -19,22 +20,22 @@ const double kNextNumberIsTwoRate = 0.9;
 }
 
 
-FullBoard::AddingNumberMove
+AddingNumberMove
 DefaultAddingNumberPlayer::NextMove(const FullBoard &full_board) const {
   int rand = NextRandomNumber(full_board.EmptyNumberCount());
-  Board::Location location;
+  Location location;
 
   int count = 0;
   for (int i = 0; i < Board::kBoardLengthSquare; ++i) {
     if (GetFullBoardNumber(full_board, i) == Board::kEmpty) {
       if (count++ == rand) {
-        location = Board::ToLocation(i);
+        location.Copy(Board::ToLocation(i));
         break;
       }
     }
   }
 
-  FullBoard::InitialNumber initial_number = IsTrueRandomly(kNextNumberIsTwoRate) ?
-      FullBoard::InitialNumber::kTwo : FullBoard::InitialNumber::kFour;
-  return FullBoard::AddingNumberMove(location, initial_number);
+  AddingNumberMove::InitialNumber initial_number = IsTrueRandomly(kNextNumberIsTwoRate) ?
+      AddingNumberMove::InitialNumber::kTwo : AddingNumberMove::InitialNumber::kFour;
+  return AddingNumberMove(location, initial_number);
 }

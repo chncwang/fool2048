@@ -8,25 +8,14 @@
 #ifndef BOARD_HELPER_H_
 #define BOARD_HELPER_H_
 
-#include "board/board.h"
+#include "board/number.h"
 
-inline Board::Location GetLocation(const Board::Location &location,
-    Board::Location::Orientation orientation) {
-  static const int kOrientationUnit[4][2] = { 1, 0, 0, -1, -1, 0, 0, 1 };
-  return Board::Location(location.X() + kOrientationUnit[orientation][0],
-      location.Y() + kOrientationUnit[orientation][1]);
-}
+class Board;
 
-inline Board::Number GetBoardNumber(const Board &board, int index) {
-  return board.GetNumber(Board::ToLocation(index));
-}
+Number GetBoardNumber(const Board &board, int index);
 
-inline Board::Number GetBoardNumber(const Board &board, int x, int y) {
-  return board.GetNumber(Board::Location(x, y));
-}
+Number GetBoardNumber(const Board &board, int x, int y);
 
-inline void SetBoardNumber(Board *board, int x, int y, Board::Number number) {
-  board->SetNumber(Board::Location(x, y), number);
-}
+void SetBoardNumber(Board *board, int x, int y, Number number);
 
 #endif /* BOARD_HELPER_H_ */

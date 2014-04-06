@@ -15,7 +15,7 @@ public:
   DefaultAddingNumberPlayer() = default;
   ~DefaultAddingNumberPlayer() = default;
 
-  FullBoard::AddingNumberMove NextMove(const FullBoard &full_board) const;
+  AddingNumberMove NextMove(const FullBoard &full_board) const;
 };
 
 #endif /* DEFAULT_ADDING_NUMBER_PLAYER_H_ */

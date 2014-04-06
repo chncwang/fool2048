@@ -35,3 +35,7 @@ Testing/
 
 # Build Files
 build/
+
+# Eclipse Project Files
+.project
+.cproject

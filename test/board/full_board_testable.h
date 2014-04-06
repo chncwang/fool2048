@@ -14,7 +14,7 @@
 
 class FullBoardTestable : public FullBoard {
 public:
-  typedef std::array<std::array<Board::Number, Board::kBoardLength>,
+  typedef std::array<std::array<Number, Board::kBoardLength>,
       Board::kBoardLength> Numbers;
 
   FullBoardTestable() = default;
@@ -23,9 +23,7 @@ public:
   void Init(const Numbers &numbers);
 
 private:
-  void SetNumber(int x, int y, Board::Number number) {
-    GetBoard()->SetNumber(Board::Location(x, y), number);
-  }
+  void SetNumber(int x, int y, Number number);
 };
 
 #endif /* FULL_BOARD_TESTABLE_H_ */

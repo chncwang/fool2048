@@ -8,12 +8,10 @@
 #ifndef FULL_BOARD_HELPER_H_
 #define FULL_BOARD_HELPER_H_
 
-#include "full_board.h"
+#include "board/number.h"
 
+class FullBoard;
 
-inline Board::Number GetFullBoardNumber(const FullBoard &full_board, int index) {
-  return full_board.GetNumber(Board::ToLocation(index));
-}
-
+Number GetFullBoardNumber(const FullBoard &full_board, int index);
 
 #endif /* FULL_BOARD_HELPER_H_ */

@@ -7,21 +7,13 @@
 
 #include "full_board.h"
 
-#include "board_helper.h"
+#include "board/adding_number_move.h"
+#include "board/board_helper.h"
+#include "board/location.h"
+#include "board/location_helper.h"
+#include "log_util.h"
 
-using namespace std;
-
-typedef Board::Location::Orientation Orientation;
-typedef FullBoard::AddingNumberMove AddingNumberMove;
-
-AddingNumberMove&
-AddingNumberMove::operator=(const AddingNumberMove &adding_number_move) {
-  if (this != &adding_number_move) {
-    location_ = adding_number_move.location_;
-    initial_number_ = adding_number_move.initial_number_;
-  }
-  return *this;
-}
+using std::ostream;
 
 void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
   board_.SetNumber(move.GetLocation(), move.GetInitialNumber());
@@ -29,7 +21,8 @@ void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
 }
 
 void FullBoard::PlayMovingMove(Orientation orientation) {
-  static const bool is_orientation_to_large_side[4] = {true, false, false, true};
+  static const bool is_orientation_to_large_side[4] =
+      { true, false, false, true };
 
   auto inner_i_begin = [orientation]() {
     return is_orientation_to_large_side[orientation] ? Board::kLargeSideXY : 0;
@@ -44,7 +37,7 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
   };
 
   auto get_location = [orientation](int outter_i, int inner_i) {
-    return orientation & 1 == 0 ? Location(inner_i, outter_i) :
+    return (orientation & 1) == 0 ? Location(inner_i, outter_i) :
     Location(outter_i, inner_i);
   };
 
@@ -55,26 +48,41 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
 
     for (int inner_i = inner_i_begin(); inner_i != inner_i_end(); inner_i +=
         inner_i_step()) {
-      board_.SetNumber(get_location(outter_i, inner_i), Board::kEmpty);
-      Number number = board_.GetNumber(get_location(outter_i, inner_i));
+      Location current_location = get_location(outter_i, inner_i);
+      Number number = board_.GetNumber(current_location);
 
-      if (merge_available && number == board_.GetNumber(last_number_location)) {
+      LOG_UTIL_DEBUG("current_location " << current_location << " number " <<
+          number);
+
+      if (number == Board::kEmpty) continue;
+
+      board_.SetNumber(current_location, Board::kEmpty);
+
+      if (merge_available && number == board_.GetNumber(last_number_location)
+          && number != Board::kEmpty) {
+        LOG_UTIL_DEBUG("merge condition: " << "last_number_location " <<
+            last_number_location << " number " <<
+            GetNumber(last_number_location));
+
         assert(first_number_moved);
         merge_available = false;
         SetNumberAsDouble(last_number_location);
+        ++empty_number_count_;
       } else {
         if (!first_number_moved) {
+          LOG_UTIL_DEBUG("move first number condition");
           assert(!merge_available);
           first_number_moved = true;
           merge_available = true;
-          last_number_location = Location(inner_i_begin(), outter_i);
+          last_number_location.Copy(get_location(outter_i, inner_i_begin()));
         } else {
+          LOG_UTIL_DEBUG("move other number condition");
           assert(first_number_moved);
           merge_available = true;
-          last_number_location = GetLocation(last_number_location,
-              Location::OppositeOrientation(orientation));
+          last_number_location.Copy(GetLocation(last_number_location,
+              OppositeOrientation(orientation)));
         }
-        board_.SetNumber(last_number_location, Board::kEmpty);
+        board_.SetNumber(last_number_location, number);
       }
     }
   }
@@ -87,8 +95,9 @@ void FullBoard::SetNumberAsDouble(const Location &location) {
 
 void FullBoard::ValidateBeforeSetDouble(const Location &location) const {
   Number number = board_.GetNumber(location);
+  LOG_UTIL_DEBUG("location " << location << " number " << number);
   assert(number > 0 && number < kMaxPossibleNumber
-      && (number & (number - 1) == 0));
+      && (number & (number - 1)) == 0);
 }
 
 ostream& operator<<(ostream & out, const FullBoard &full_board) {

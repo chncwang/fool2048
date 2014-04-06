@@ -5,6 +5,7 @@
  *      Author: chncwang
  */
 
+#include "board/orientation.h"
 #include "full_board_testable.h"
 #include "gtest/gtest.h"
 #include "log_util.h"
@@ -32,4 +33,12 @@ protected:
 
 TEST_F(FullBoardTest, OperatorDoubleLeftArrow) {
   LOG_UTIL_DEBUG("full_board" << full_board_);
+}
+
+TEST_F(FullBoardTest, PlayMovingMove) {
+  FullBoard to_right_board;
+  to_right_board.Copy(full_board_);
+
+  to_right_board.PlayMovingMove(Orientation::kRight);
+  LOG_UTIL_DEBUG("to_right_board " << to_right_board);
 }

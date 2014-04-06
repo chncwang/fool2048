@@ -1,10 +1,18 @@
 #include "full_board_testable.h"
 
-void FullBoardTestable::Init(const FullBoardTestable::Numbers &numbers) {
-  for (int y = 0; y < Board::kBoardLength; ++y) {
-    for (int x = 0; x < Board::kBoardLength; ++x) {
-      auto number = numbers.at(y).at(x);
-      SetNumber(x, y, number == 0 ? Board::kEmpty : number);
+#include "board/location.h"
+
+void FullBoardTestable::Init(const Numbers &numbers) {
+  Board::ForEachLokation([this, &numbers](const Location &location) {
+    auto number = numbers.at(location.Y()).at(location.X());
+    if (number == 0) {
+      number = Board::kEmpty;
+      ++(*EmptyNumberCountPointer());
     }
-  }
+    SetNumber(location.X(), location.Y(), number);
+  });
+}
+
+void FullBoardTestable::SetNumber(int x, int y, Number number) {
+  GetBoard()->SetNumber(Location(x, y), number);
 }

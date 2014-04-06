@@ -42,6 +42,6 @@ ADD_TEST(NAME DefaultAddingNumberPlayerTest COMMAND DefaultAddingNumberPlayerTes
 ADD_EXECUTABLE(DefaultAddingNumberPlayerTest test/player/default_adding_number_player_test.cc ${GTEST_EXECUTABLE})
 TARGET_LINK_LIBRARIES(DefaultAddingNumberPlayerTest ${GTEST_LIBS})
 
-ADD_TEST(NAME BoardHelperTest COMMAND BoardHelperTest)
-ADD_EXECUTABLE(BoardHelperTest test/board/board_helper_test.cc ${GTEST_EXECUTABLE})
-TARGET_LINK_LIBRARIES(BoardHelperTest ${GTEST_LIBS})
+ADD_TEST(NAME LocationHelperTest COMMAND LocationHelperTest)
+ADD_EXECUTABLE(LocationHelperTest test/board/location_helper_test.cc ${GTEST_EXECUTABLE})
+TARGET_LINK_LIBRARIES(LocationHelperTest ${GTEST_LIBS})

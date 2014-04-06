@@ -9,14 +9,15 @@
 
 #include <string>
 
-#include "board_helper.h"
+#include "board/board_helper.h"
+#include "board/location.h"
 
-using namespace std;
+using std::endl;
+using std::function;
+using std::ostream;
+using std::string;
 
-typedef Board::Location Location;
-typedef Board::Number Number;
-
-const Board::IndexLocationTable Board::kIndexLocationTable;
+typedef Location Location;
 
 namespace {
 
@@ -43,14 +44,33 @@ string CreateBlankString(int width) {
   return result;
 }
 
+class IndexLocationTable {
+public:
+  IndexLocationTable();
+
+  int index(const Location &location) const {
+    return indexes_[location.Y()][location.X()];
+  }
+
+  const Location& location(int index) const {
+    return locations_.at(index);
+  }
+
+private:
+  std::array<Location, Board::kBoardLengthSquare> locations_;
+  std::array<std::array<int, Board::kBoardLength>, Board::kBoardLength> indexes_;
+};
+
+const IndexLocationTable kIndexLocationTable;
+
+IndexLocationTable::IndexLocationTable() {
+  Board::ForEachLokation([this](const Location &location) {
+      int index = location.Y() * Board::kBoardLength + location.X();
+      indexes_.at(location.Y()).at(location.X()) = index;
+      locations_.at(index).Copy(location);
+  });
 }
 
-Location& Location::operator=(const Location &location) {
-  if (this != &location) {
-    x_ = location.x_;
-    y_ = location.y_;
-  }
-  return *this;
 }
 
 Board::Board() {
@@ -59,17 +79,22 @@ Board::Board() {
   }
 }
 
-void Board::ForEachLocation(
-    const std::function<void(const Location&, Number*)> &process) {
-  for (int y = 0; y < Board::kBoardLength; ++y) {
-    for (int x = 0; x < Board::kBoardLength; ++x) {
-      Location location(x, y);
-      process(location, &numbers_.at(y).at(x));
-    }
-  }
+Number Board::GetNumber(const Location &location) const {
+  return numbers_.at(location.Y()).at(location.X());
 }
 
-void Board::ForEachLokation(const std::function<void(const Location&)> &process) {
+void Board::SetNumber(const Location &location, Number number) {
+  numbers_.at(location.Y()).at(location.X()) = number;
+}
+
+void Board::ForEachLocation(
+    const function<void(const Location&, Number*)> &process) {
+  Board::ForEachLokation([this, process](const Location &location) {
+    process(location, &numbers_.at(location.Y()).at(location.X()));
+  });
+}
+
+void Board::ForEachLokation(const function<void(const Location&)> &process) {
   for (int y = 0; y < Board::kBoardLength; ++y) {
     for (int x = 0; x < Board::kBoardLength; ++x) {
       process(Location(x, y));
@@ -77,14 +102,12 @@ void Board::ForEachLokation(const std::function<void(const Location&)> &process)
   }
 }
 
-Board::IndexLocationTable::IndexLocationTable() {
-  for (int y = 0; y < kBoardLength; ++y) {
-    for (int x = 0; x < kBoardLength; ++x) {
-      int index = y * kBoardLength + x;
-      indexes_[y][x] = index;
-      locations_[index] = Location(x, y);
-    }
-  }
+int Board::ToIndex(const Location &location) {
+  return kIndexLocationTable.index(location);
+}
+
+const Location& Board::ToLocation(int index) {
+  return kIndexLocationTable.location(index);
 }
 
 ostream& operator<<(ostream &out, const Board &board) {
@@ -94,8 +117,12 @@ ostream& operator<<(ostream &out, const Board &board) {
   (const_cast<Board &>(board)).ForEachLocation(
       [&out, max_width](const Location &location, Number *number) {
     out << CreateBlankString(max_width + 1 - NumberWidth(*number)) << *number;
+    if (location.X() == Board::kLargeSideXY) {
+      out << endl;
+    }
   });
 
   out << "]";
   return out;
 }
+

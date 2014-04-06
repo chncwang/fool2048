@@ -15,9 +15,9 @@
 #include <log4cplus/consoleappender.h>
 #include <log4cplus/helpers/pointer.h>
 
-using namespace std;
 using namespace log4cplus;
 using namespace log4cplus::helpers;
+using std::auto_ptr;
 
 void InitLogConfig() {
   initialize();
