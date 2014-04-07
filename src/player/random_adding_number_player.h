@@ -10,10 +10,10 @@
 
 #include "adding_number_player.h"
 
-class DefaultAddingNumberPlayer : public AddingNumberPlayer {
+class RandomNumberPlayer : public AddingNumberPlayer {
 public:
-  DefaultAddingNumberPlayer() = default;
-  ~DefaultAddingNumberPlayer() = default;
+  RandomNumberPlayer() = default;
+  ~RandomNumberPlayer() = default;
 
   AddingNumberMove NextMove(const FullBoard &full_board) const;
 };

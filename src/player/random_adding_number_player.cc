@@ -5,7 +5,7 @@
  *      Author: chncwang
  */
 
-#include "default_adding_number_player.h"
+#include "random_adding_number_player.h"
 
 #include "board/adding_number_move.h"
 #include "board/board.h"
@@ -21,7 +21,7 @@ const double kNextNumberIsTwoRate = 0.9;
 
 
 AddingNumberMove
-DefaultAddingNumberPlayer::NextMove(const FullBoard &full_board) const {
+RandomNumberPlayer::NextMove(const FullBoard &full_board) const {
   int rand = NextRandomNumber(full_board.EmptyNumberCount());
   Location location;
 
@@ -35,7 +35,9 @@ DefaultAddingNumberPlayer::NextMove(const FullBoard &full_board) const {
     }
   }
 
-  AddingNumberMove::InitialNumber initial_number = IsTrueRandomly(kNextNumberIsTwoRate) ?
-      AddingNumberMove::InitialNumber::kTwo : AddingNumberMove::InitialNumber::kFour;
+  AddingNumberMove::InitialNumber initial_number =
+      IsTrueRandomly(kNextNumberIsTwoRate) ?
+          AddingNumberMove::InitialNumber::kTwo :
+          AddingNumberMove::InitialNumber::kFour;
   return AddingNumberMove(location, initial_number);
 }

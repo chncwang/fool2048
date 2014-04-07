@@ -38,9 +38,9 @@ ADD_TEST(NAME FullBoardTest COMMAND FullBoardTest)
 ADD_EXECUTABLE(FullBoardTest test/board/full_board_test.cc ${GTEST_EXECUTABLE})
 TARGET_LINK_LIBRARIES(FullBoardTest ${GTEST_LIBS})
 
-ADD_TEST(NAME DefaultAddingNumberPlayerTest COMMAND DefaultAddingNumberPlayerTest)
-ADD_EXECUTABLE(DefaultAddingNumberPlayerTest test/player/default_adding_number_player_test.cc ${GTEST_EXECUTABLE})
-TARGET_LINK_LIBRARIES(DefaultAddingNumberPlayerTest ${GTEST_LIBS})
+ADD_TEST(NAME RandomAddingNumberPlayerTest COMMAND RandomAddingNumberPlayerTest)
+ADD_EXECUTABLE(RandomAddingNumberPlayerTest test/player/random_adding_number_player_test.cc ${GTEST_EXECUTABLE})
+TARGET_LINK_LIBRARIES(RandomAddingNumberPlayerTest ${GTEST_LIBS})
 
 ADD_TEST(NAME LocationHelperTest COMMAND LocationHelperTest)
 ADD_EXECUTABLE(LocationHelperTest test/board/location_helper_test.cc ${GTEST_EXECUTABLE})
