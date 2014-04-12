@@ -8,7 +8,7 @@
 #ifndef BOARD_HELPER_H_
 #define BOARD_HELPER_H_
 
-#include "board/number.h"
+#include "number.h"
 
 class Board;
 

@@ -11,8 +11,7 @@ SET(GTEST_ROOT /usr/share/gtest-1.7.0)
 SET(SRC src)
 SET(TEST test)
 
-INCLUDE_DIRECTORIES(${SRC} ${SRC}/board ${SRC}/player test ${GTEST_ROOT} ${GTEST_ROOT}/include)
-ADD_SUBDIRECTORY(${SRC} build)
+INCLUDE_DIRECTORIES(${SRC} test ${GTEST_ROOT} ${GTEST_ROOT}/include)
 
 ENABLE_TESTING()
 
@@ -22,6 +21,10 @@ SET(GTEST_LIBS ${GTEST_ROOT}/libgtest.a ${GTEST_ROOT}/libgtest_main.a /usr/local
 AUX_SOURCE_DIRECTORY(${SRC} SRCS)
 AUX_SOURCE_DIRECTORY(${SRC}/board SRCS)
 AUX_SOURCE_DIRECTORY(${SRC}/player SRCS)
+AUX_SOURCE_DIRECTORY(${SRC}/game SRCS)
+
+ADD_EXECUTABLE(fool2048 ${SRCS})
+TARGET_LINK_LIBRARIES(fool2048 /usr/local/lib/liblog4cplus.a rt)
 
 SET(GTEST_EXECUTABLE ${SRCS} ${TEST} ${TEST}/board/full_board_testable.cc ${GTEST_MAIN})
 LIST(REMOVE_ITEM GTEST_EXECUTABLE ${SRC}/main.cc)
@@ -45,3 +48,7 @@ TARGET_LINK_LIBRARIES(RandomAddingNumberPlayerTest ${GTEST_LIBS})
 ADD_TEST(NAME LocationHelperTest COMMAND LocationHelperTest)
 ADD_EXECUTABLE(LocationHelperTest test/board/location_helper_test.cc ${GTEST_EXECUTABLE})
 TARGET_LINK_LIBRARIES(LocationHelperTest ${GTEST_LIBS})
+
+ADD_TEST(NAME FullBoardGameTest COMMAND FullBoardGameTest)
+ADD_EXECUTABLE(FullBoardGameTest test/board/full_board_game_test.cc ${GTEST_EXECUTABLE})
+TARGET_LINK_LIBRARIES(FullBoardGameTest ${GTEST_LIBS})

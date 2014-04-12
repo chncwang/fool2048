@@ -25,6 +25,8 @@ public:
 
   FullBoard() : empty_number_count_(Board::kBoardLengthSquare) {}
 
+  FullBoard(FullBoard &&full_board) = default;
+
   ~FullBoard() = default;
 
   void Copy(FullBoard &full_board) {
@@ -42,8 +44,6 @@ public:
 
   void PlayAddingNumberMove(const AddingNumberMove &move);
   void PlayMovingMove(Orientation orientation);
-
-  DISALLOW_COPY_AND_ASSIGN(FullBoard);
 
 protected:
   void SetNumber(const Location &location, Number number) {
@@ -64,6 +64,8 @@ private:
 
   Board board_;
   int empty_number_count_;
+
+  DISALLOW_COPY_AND_ASSIGN(FullBoard);
 };
 
 #endif /* FULL_BOARD_H_ */

@@ -14,7 +14,6 @@ template<typename T>
 class Player {
 public:
   Player() = default;
-
   virtual ~Player() {}
 
   virtual T NextMove(const FullBoard &full_board) const = 0;

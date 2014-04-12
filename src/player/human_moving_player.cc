@@ -28,6 +28,5 @@ Orientation HumanMovingPlayer::NextMove(const FullBoard &full_board) const {
       return Orientation::kDown;
     default:
       assert(false);
-      return -1;
   }
 }

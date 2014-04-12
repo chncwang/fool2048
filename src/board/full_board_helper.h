@@ -8,10 +8,12 @@
 #ifndef FULL_BOARD_HELPER_H_
 #define FULL_BOARD_HELPER_H_
 
-#include "board/number.h"
+#include "number.h"
 
 class FullBoard;
 
 Number GetFullBoardNumber(const FullBoard &full_board, int index);
+
+Number GetFullBoardNumber(const FullBoard &full_board, int x, int y);
 
 #endif /* FULL_BOARD_HELPER_H_ */

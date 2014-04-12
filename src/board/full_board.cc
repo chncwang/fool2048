@@ -9,10 +9,10 @@
 
 #include <cassert>
 
-#include "board/adding_number_move.h"
-#include "board/board_helper.h"
-#include "board/location.h"
-#include "board/location_helper.h"
+#include "adding_number_move.h"
+#include "board_helper.h"
+#include "location.h"
+#include "location_helper.h"
 #include "log_util.h"
 
 using std::ostream;
@@ -31,7 +31,8 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
   };
 
   auto inner_i_end = [orientation, &inner_i_begin]() {
-    return is_orientation_to_large_side[orientation] ? -1 : Board::kBoardLength;
+    return is_orientation_to_large_side[orientation] ? -1 :
+        Board::kBoardLength;
   };
 
   auto inner_i_step = [orientation, &inner_i_begin]() {

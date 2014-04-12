@@ -28,6 +28,8 @@ public:
 
   Board();
 
+  Board(Board &&board);
+
   ~Board() = default;
 
   void Copy(const Board &board) {
@@ -48,8 +50,6 @@ public:
 
   static const Location& ToLocation(int index);
 
-  DISALLOW_COPY_AND_ASSIGN(Board);
-
 private:
   typedef std::ostream ostream;
 
@@ -59,6 +59,8 @@ private:
   friend bool IsEqual(const Board &a, const Board &b);
 
   std::array<std::array<Number, kBoardLength>, kBoardLength> numbers_;
+
+  DISALLOW_COPY_AND_ASSIGN(Board);
 };
 
 #endif /* BOARD_H_ */

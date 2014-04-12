@@ -1,13 +1,14 @@
 #include "board/board.h"
 
 #include <ostream>
+#include <utility>
 
 #include "gtest/gtest.h"
 #include "board/board_helper.h"
 #include "board/location.h"
 #include "log_util.h"
 
-using namespace std;
+using std::move;
 
 namespace {
 
@@ -44,6 +45,12 @@ TEST_F(BoardTest, Copy) {
   copied_board.ForEachLocation([&board](const Location &location,
       Number *number) {
     ASSERT_EQ(*number, board.GetNumber(location));
+  });
+
+  Board move_copied_board(move(board));
+  move_copied_board.ForEachLocation([&copied_board](const Location &location,
+      Number *number) {
+    ASSERT_EQ(*number, copied_board.GetNumber(location));
   });
 }
 

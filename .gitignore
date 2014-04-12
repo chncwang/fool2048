@@ -30,11 +30,13 @@ Makefile
 *Test
 Testing/
 
-# Vim Swap Files
+# Vim Files
+tags
 *.swp
 
 # Build Files
 build/
+fool2048
 
 # Eclipse Project Files
 .project

@@ -8,14 +8,16 @@
 #include "board.h"
 
 #include <string>
+#include <utility>
 
-#include "board/board_helper.h"
-#include "board/location.h"
+#include "board_helper.h"
+#include "location.h"
 
 using std::endl;
 using std::function;
 using std::ostream;
 using std::string;
+using std::swap;
 
 typedef Location Location;
 
@@ -74,9 +76,13 @@ IndexLocationTable::IndexLocationTable() {
 }
 
 Board::Board() {
-  for (int i = 0; i < kBoardLength; ++i) {
-    numbers_[i].fill(kEmpty);
+  for (auto &numbers : numbers_) {
+    numbers.fill(kEmpty);
   }
+}
+
+Board::Board(Board &&board) {
+  swap(numbers_, board.numbers_);
 }
 
 Number Board::GetNumber(const Location &location) const {
