@@ -5,7 +5,7 @@
  *      Author: chncwang
  */
 
-#include "random_adding_number_player.h"
+#include "adding_number_randomly_player.h"
 
 #include "board/adding_number_move.h"
 #include "board/board.h"
@@ -21,7 +21,7 @@ const double kNextNumberIsTwoRate = 0.9;
 
 
 AddingNumberMove
-RandomNumberPlayer::NextMove(const FullBoard &full_board) const {
+AddingNumberRandomlyPlayer::NextMove(const FullBoard &full_board) const {
   int rand = NextRandomNumber(full_board.EmptyNumberCount());
   Location location;
 

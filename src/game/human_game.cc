@@ -11,7 +11,7 @@
 #include <iostream>
 
 #include "log_util.h"
-#include "player/random_adding_number_player.h"
+#include "player/adding_number_randomly_player.h"
 #include "player/human_moving_player.h"
 
 using std::cout;
@@ -21,7 +21,7 @@ using std::move;
 HumanGame::HumanGame() : HumanGame(FullBoard()) {}
 
 HumanGame::HumanGame(FullBoard &&full_board) : Game(move(full_board),
-    move(Game::AddingNumberPlayerUniquePtr(new RandomNumberPlayer)),
+    move(Game::AddingNumberPlayerUniquePtr(new AddingNumberRandomlyPlayer)),
     move(Game::MovingPlayerUniquePtr(new HumanMovingPlayer))) {}
 
 void HumanGame::BeforeAddNumber() const {

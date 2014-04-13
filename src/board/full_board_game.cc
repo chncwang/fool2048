@@ -10,6 +10,8 @@
 #include "full_board.h"
 #include "location_helper.h"
 
+using std::bitset;
+
 bool HasGameEnded(const FullBoard &full_board) {
   if (full_board.EmptyNumberCount() > 0) return false;
 
@@ -40,4 +42,7 @@ bool HasGameEnded(const FullBoard &full_board) {
   Number corner_up_num = full_board.GetNumber(corner_up_location);
 
   return corner_num != corner_left_num && corner_num != corner_up_num;
+}
+
+bitset<4> MovableOrientation(const FullBoard &full_board) {
 }

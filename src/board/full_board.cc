@@ -23,35 +23,15 @@ void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
 }
 
 void FullBoard::PlayMovingMove(Orientation orientation) {
-  static const bool is_orientation_to_large_side[4] =
-      { true, false, false, true };
-
-  auto inner_i_begin = [orientation]() {
-    return is_orientation_to_large_side[orientation] ? Board::kLargeSideXY : 0;
-  };
-
-  auto inner_i_end = [orientation, &inner_i_begin]() {
-    return is_orientation_to_large_side[orientation] ? -1 :
-        Board::kBoardLength;
-  };
-
-  auto inner_i_step = [orientation, &inner_i_begin]() {
-    return inner_i_begin() == 0 ? 1 : -1;
-  };
-
-  auto get_location = [orientation](int outter_i, int inner_i) {
-    return (orientation & 1) == 0 ? Location(inner_i, outter_i) :
-    Location(outter_i, inner_i);
-  };
-
   for (int outter_i = 0; outter_i < Board::kBoardLength; ++outter_i) {
     Location last_number_location;
     bool merge_available = false;
     bool first_number_moved = false;
 
-    for (int inner_i = inner_i_begin(); inner_i != inner_i_end(); inner_i +=
-        inner_i_step()) {
-      Location current_location = get_location(outter_i, inner_i);
+    for (int inner_i = InnerIndexBegin(orientation);
+        inner_i != InnerIndexEnd(orientation);
+        inner_i += InnerIndexStep(orientation)) {
+      Location current_location = GetLocation(orientation, outter_i, inner_i);
       Number number = board_.GetNumber(current_location);
 
       LOG_UTIL_DEBUG("current_location " << current_location << " number " <<
@@ -77,7 +57,8 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
           assert(!merge_available);
           first_number_moved = true;
           merge_available = true;
-          last_number_location.Copy(get_location(outter_i, inner_i_begin()));
+          last_number_location.Copy(
+              GetLocation(orientation, outter_i, InnerIndexBegin(orientation)));
         } else {
           LOG_UTIL_DEBUG("move other number condition");
           assert(first_number_moved);
