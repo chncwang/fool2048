@@ -4,13 +4,13 @@
 
 #include "board/location.h"
 
-TEST(LocationHelperTest, GetLocation) {
+TEST(LocationHelperTest, GetAdjacentLocation) {
   static Location location(1, 3);
-  ASSERT_TRUE(IsEqual(GetLocation(location, Orientation::kRight),
+  ASSERT_TRUE(IsEqual(GetAdjacentLocation(location, Orientation::kRight),
       Location(2, 3)));
-  ASSERT_TRUE(IsEqual(GetLocation(location, Orientation::kUp), Location(1, 2)));
-  ASSERT_TRUE(IsEqual(GetLocation(location, Orientation::kLeft),
+  ASSERT_TRUE(IsEqual(GetAdjacentLocation(location, Orientation::kUp), Location(1, 2)));
+  ASSERT_TRUE(IsEqual(GetAdjacentLocation(location, Orientation::kLeft),
       Location(0, 3)));
-  ASSERT_TRUE(IsEqual(GetLocation(location, Orientation::kDown),
+  ASSERT_TRUE(IsEqual(GetAdjacentLocation(location, Orientation::kDown),
       Location(1, 4)));
 }

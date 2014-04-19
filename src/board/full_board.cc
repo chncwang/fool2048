@@ -63,7 +63,7 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
           LOG_UTIL_DEBUG("move other number condition");
           assert(first_number_moved);
           merge_available = true;
-          last_number_location.Copy(GetLocation(last_number_location,
+          last_number_location.Copy(GetAdjacentLocation(last_number_location,
               OppositeOrientation(orientation)));
         }
         board_.SetNumber(last_number_location, number);
@@ -92,8 +92,6 @@ ostream& operator<<(ostream & out, const FullBoard &full_board) {
 bool IsEqual(const FullBoard &a, const FullBoard &b) {
   bool result = IsEqual(a.board_, b.board_);
   if (result) {
-  LOG_UTIL_DEBUG("a.empty_number_count_ " << a.empty_number_count_ <<
-      " b.empty_number_count_ " << b.empty_number_count_);
     assert(a.empty_number_count_ == b.empty_number_count_);
   }
   return result;

@@ -11,6 +11,6 @@
 #include "location.h"
 #include "orientation.h"
 
-Location GetLocation(const Location &location, Orientation orientation);
+Location GetAdjacentLocation(const Location &location, Orientation orientation);
 
 #endif /* LOCATION_HELPER_H_ */

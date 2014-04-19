@@ -9,43 +9,67 @@
 #include "gtest/gtest.h"
 
 #include "full_board_testable.h"
+#include "log_util.h"
 
-TEST(FullBoardGameTest, HasGameEnded) {
-  FullBoardTestable full_board;
+namespace {
 
-  FullBoardTestable::Numbers a = {
+class FullBoardGameTest : public testing::Test {
+protected:
+  virtual void SetUp() {
+    InitLogConfig();
+
+    FullBoardTestable::Numbers a = {
       2, 4, 2, 4,
       4, 2, 4, 2,
       2, 4, 2, 4,
       4, 2, 4, 2
-  };
-  full_board.Init(a);
-  ASSERT_TRUE(HasGameEnded(full_board));
+    };
+    a_.Init(a);
 
-  FullBoardTestable::Numbers b = {
+    FullBoardTestable::Numbers b = {
       2, 4, 2, 4,
       4, 2, 4, 2,
       2, 4, 2, 4,
       4, 2, 4, 0,
-  };
-  full_board.Init(b);
-  ASSERT_FALSE(HasGameEnded(full_board));
+    };
+    b_.Init(b);
 
-  FullBoardTestable::Numbers c = {
+    FullBoardTestable::Numbers c = {
       2, 4, 2, 4,
       4, 2, 4, 2,
       2, 4, 2, 4,
       4, 2, 4, 4,
-  };
-  full_board.Init(c);
-  ASSERT_FALSE(HasGameEnded(full_board));
+    };
+    c_.Init(c);
 
-  FullBoardTestable::Numbers d = {
+    FullBoardTestable::Numbers d = {
       2, 4, 2, 4,
       4, 2, 4, 2,
       2, 4, 2, 4,
       4, 2, 2, 2,
-  };
-  full_board.Init(d);
-  ASSERT_FALSE(HasGameEnded(full_board));
+    };
+    d_.Init(d);
+  }
+
+  FullBoardTestable a_;
+  FullBoardTestable b_;
+  FullBoardTestable c_;
+  FullBoardTestable d_;
+};
+
+}
+
+TEST_F(FullBoardGameTest, HasGameEnded) {
+  ASSERT_TRUE(HasGameEnded(a_));
+  ASSERT_FALSE(HasGameEnded(b_));
+  ASSERT_FALSE(HasGameEnded(c_));
+  ASSERT_FALSE(HasGameEnded(d_));
+}
+
+TEST_F(FullBoardGameTest, IsMovable) {
+  ForEachOrientation([&](Orientation orientation) {
+      ASSERT_FALSE(IsMovable(a_, orientation));
+  });
+
+
 }

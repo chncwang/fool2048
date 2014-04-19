@@ -8,8 +8,9 @@
 #ifndef BOARD_HELPER_H_
 #define BOARD_HELPER_H_
 
-#include "number.h"
-#include "orientation.h"
+#include "board/location.h"
+#include "board/number.h"
+#include "board/orientation.h"
 
 class Board;
 

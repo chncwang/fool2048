@@ -8,12 +8,12 @@
 #ifndef FULL_BOARD_GAME_H_
 #define FULL_BOARD_GAME_H_
 
-#include <bitset>
+#include "orientation.h"
 
 class FullBoard;
 
 bool HasGameEnded(const FullBoard &full_board);
 
-std::bitset<4> MovableOrientations(const FullBoard &full_board);
+bool IsMovable(const FullBoard &full_board, Orientation orientation);
 
 #endif /* FULL_BOARD_GAME_H_ */

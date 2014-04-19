@@ -7,42 +7,41 @@
 
 #include "full_board_game.h"
 
+#include "board/number.h"
+#include "board/board_helper.h"
 #include "full_board.h"
 #include "location_helper.h"
 
-using std::bitset;
-
 bool HasGameEnded(const FullBoard &full_board) {
-  if (full_board.EmptyNumberCount() > 0) return false;
+  return !IsMovable(full_board, Orientation::kRight) &&
+      !IsMovable(full_board, Orientation::kUp);
+}
 
-  for (int y=0; y<Board::kLargeSideXY; ++y) {
-    for (int x=0; x<Board::kLargeSideXY; ++x) {
-      Location location(x, y);
-      Location right_location = GetLocation(location, Orientation::kRight);
-      Location down_location = GetLocation(location, Orientation::kDown);
+bool IsMovable(const FullBoard &full_board, Orientation orientation) {
+  bool movable = false;
 
-      Number number = full_board.GetNumber(location);
+  if (full_board.EmptyNumberCount() > 0) {
+    movable = true;
+  } else {
+    for (int outter_i=0; outter_i<Board::kBoardLength; ++outter_i) {
+      Number last_num = -1;
+      for (int inner_i=InnerIndexBegin(orientation);
+          inner_i != InnerIndexEnd(orientation);
+          inner_i += InnerIndexStep(orientation)) {
+        Number num =
+          full_board.GetNumber(GetLocation(orientation, outter_i, inner_i));
 
-      if (number == full_board.GetNumber(right_location)
-          || number == full_board.GetNumber(down_location)) {
-        return false;
+        assert(num !=Board::kEmpty);
+
+        if (num == last_num) {
+          movable = true;
+          break;
+        } else {
+          last_num = num;
+        }
       }
     }
   }
 
-  Location corner_location(Board::kLargeSideXY, Board::kLargeSideXY);
-  Number corner_num = full_board.GetNumber(corner_location);
-
-  Location corner_left_location =
-      GetLocation(corner_location, Orientation::kLeft);
-  Number corner_left_num = full_board.GetNumber(corner_left_location);
-
-  Location corner_up_location =
-      GetLocation(corner_location, Orientation::kUp);
-  Number corner_up_num = full_board.GetNumber(corner_up_location);
-
-  return corner_num != corner_left_num && corner_num != corner_up_num;
-}
-
-bitset<4> MovableOrientation(const FullBoard &full_board) {
+  return movable;
 }

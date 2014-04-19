@@ -28,7 +28,7 @@ public:
 
   Board();
 
-  Board(Board &&board);
+  Board(Board &&board) = default;
 
   ~Board() = default;
 

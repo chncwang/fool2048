@@ -81,10 +81,6 @@ Board::Board() {
   }
 }
 
-Board::Board(Board &&board) {
-  swap(numbers_, board.numbers_);
-}
-
 Number Board::GetNumber(const Location &location) const {
   return numbers_.at(location.Y()).at(location.X());
 }
