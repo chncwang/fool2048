@@ -9,10 +9,16 @@
 #include "full_board.h"
 #include "location.h"
 
+namespace fool2048 {
+namespace board {
+
 Number GetFullBoardNumber(const FullBoard &full_board, int index) {
   return full_board.GetNumber(Board::ToLocation(index));
 }
 
 Number GetFullBoardNumber(const FullBoard &full_board, int x, int y) {
   return full_board.GetNumber(Location(x, y));
+}
+
+}
 }

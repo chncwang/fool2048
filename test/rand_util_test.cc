@@ -9,6 +9,8 @@
 #include "gtest/gtest.h"
 #include "log_util.h"
 
+namespace fool2048 {
+
 namespace {
 
 class RandUtilTest : public testing::Test {
@@ -40,4 +42,6 @@ TEST_F(RandUtilTest, IsTrueRandomly) {
     bool result = IsTrueRandomly(0.1);
     LOG_UTIL_DEBUG("result " << result);
   }
+}
+
 }

@@ -10,10 +10,16 @@
 
 #include "number.h"
 
+namespace fool2048 {
+namespace board {
+
 class FullBoard;
 
 Number GetFullBoardNumber(const FullBoard &full_board, int index);
 
 Number GetFullBoardNumber(const FullBoard &full_board, int x, int y);
+
+}
+}
 
 #endif /* FULL_BOARD_HELPER_H_ */

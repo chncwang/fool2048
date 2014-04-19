@@ -11,6 +11,12 @@
 #include "board/adding_number_move.h"
 #include "player/player.h"
 
-typedef Player<Orientation> MovingPlayer;
+namespace fool2048 {
+namespace player {
+
+typedef Player<board::Orientation> MovingPlayer;
+
+}
+}
 
 #endif /* MOVING_PLAYER_H_ */

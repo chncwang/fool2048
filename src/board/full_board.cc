@@ -15,6 +15,9 @@
 #include "location_helper.h"
 #include "log_util.h"
 
+namespace fool2048 {
+namespace board {
+
 using std::ostream;
 
 void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
@@ -95,4 +98,7 @@ bool IsEqual(const FullBoard &a, const FullBoard &b) {
     assert(a.empty_number_count_ == b.empty_number_count_);
   }
   return result;
+}
+
+}
 }

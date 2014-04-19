@@ -2,6 +2,9 @@
 
 #include "board/location.h"
 
+namespace fool2048 {
+namespace board {
+
 void FullBoardTestable::Init(const Numbers &numbers) {
   int empty_number_count = 0;
 
@@ -20,4 +23,7 @@ void FullBoardTestable::Init(const Numbers &numbers) {
 
 void FullBoardTestable::SetNumber(int x, int y, Number number) {
   FullBoard::SetNumber(Location(x, y), number);
+}
+
+}
 }

@@ -11,12 +11,18 @@
 #include "board/orientation.h"
 #include "player/moving_player.h"
 
+namespace fool2048 {
+namespace player {
+
 class HumanMovingPlayer : public MovingPlayer {
 public:
   HumanMovingPlayer() = default;
   ~HumanMovingPlayer() = default;
 
-  Orientation NextMove(const FullBoard &full_board) const;
+  board::Orientation NextMove(const board::FullBoard &full_board) const;
 };
+
+}
+}
 
 #endif /* HUMAN_MOVING_PLAYER_H_ */

@@ -9,8 +9,14 @@
 
 #include <iostream>
 
+namespace fool2048 {
+namespace player {
+
+using board::FullBoard;
+using board::Orientation;
 using std::cin;
 using std::cout;
+
 
 Orientation HumanMovingPlayer::NextMove(const FullBoard &full_board) const {
   cout << "hjkl : ";
@@ -29,4 +35,7 @@ Orientation HumanMovingPlayer::NextMove(const FullBoard &full_board) const {
     default:
       assert(false);
   }
+}
+
+}
 }

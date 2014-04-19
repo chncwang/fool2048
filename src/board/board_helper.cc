@@ -9,11 +9,15 @@
 #include "board_helper.h"
 #include "location.h"
 
+namespace fool2048 {
+namespace board {
+
 namespace {
   static const bool is_orientation_to_large_side[4] = {
     true, false, false, true
   };
 }
+
 
 Number GetBoardNumber(const Board &board, int index) {
   return board.GetNumber(Board::ToLocation(index));
@@ -43,4 +47,7 @@ Location
 GetLocation(Orientation orientation, int outter_index, int inner_index) {
   return (orientation & 1) == 0 ? Location(inner_index, outter_index) :
       Location(outter_index, inner_index);
+}
+
+}
 }

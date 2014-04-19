@@ -10,15 +10,21 @@
 
 #include <game/game.h>
 
+namespace fool2048 {
+namespace game {
+
 class HumanGame : public Game {
 public:
   HumanGame();
-  HumanGame(FullBoard &&full_board);
+  HumanGame(board::FullBoard &&full_board);
   ~HumanGame() = default;
 
 protected:
   void BeforeAddNumber() const;
   void BeforeMove() const;
 };
+
+}
+}
 
 #endif /* HUMAN_GAME_H_ */

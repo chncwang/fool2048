@@ -19,7 +19,8 @@ using std::ostream;
 using std::string;
 using std::swap;
 
-typedef Location Location;
+namespace fool2048 {
+namespace board {
 
 namespace {
 
@@ -136,4 +137,7 @@ bool IsEqual(const Board &a, const Board &b) {
   }
 
   return true;
+}
+
+}
 }

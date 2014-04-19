@@ -11,6 +11,12 @@
 #include "board/adding_number_move.h"
 #include "player/player.h"
 
-typedef Player<AddingNumberMove> AddingNumberPlayer;
+namespace fool2048 {
+namespace player {
+
+typedef Player<board::AddingNumberMove> AddingNumberPlayer;
+
+}
+}
 
 #endif /* ADDING_NUMBER_PLAYER_H_ */

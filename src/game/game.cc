@@ -13,6 +13,13 @@
 #include "board/full_board_game.h"
 #include "board/orientation.h"
 
+namespace fool2048 {
+namespace game {
+
+using board::AddingNumberMove;
+using board::Force;
+using board::FullBoard;
+using board::Orientation;
 using std::move;
 
 Game::~Game() {}
@@ -44,3 +51,6 @@ Game::Game(FullBoard &&full_board,
     adding_number_player_unique_ptr_(move(adding_number_player_unique_ptr)),
     moving_player_unique_ptr_(move(moving_player_unique_ptr)),
     last_force_(Force::kMoving) {}
+
+}
+}

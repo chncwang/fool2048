@@ -10,6 +10,9 @@
 
 #include <functional>
 
+namespace fool2048 {
+namespace board {
+
 enum Orientation {
   kRight = 0, kUp = 1, kLeft = 2, kDown = 3
 };
@@ -22,5 +25,7 @@ inline Orientation OppositeOrientation(Orientation orientation) {
 
 void ForEachOrientation(
     const std::function<void(Orientation orientation)> &process);
+}
+}
 
 #endif /* ORIENTATION_H_ */

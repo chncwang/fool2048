@@ -14,6 +14,12 @@
 #include "player/adding_number_randomly_player.h"
 #include "player/human_moving_player.h"
 
+namespace fool2048 {
+namespace game {
+
+using board::FullBoard;
+using player::AddingNumberRandomlyPlayer;
+using player::HumanMovingPlayer;
 using std::cout;
 using std::endl;
 using std::move;
@@ -33,4 +39,7 @@ void HumanGame::BeforeAddNumber() const {
 void HumanGame::BeforeMove() const {
   FullBoardToStream(cout);
   cout << endl;
+}
+
+}
 }

@@ -17,6 +17,9 @@
 #include "def.h"
 #include "board/number.h"
 
+namespace fool2048 {
+namespace board {
+
 class Location;
 
 class Board {
@@ -62,5 +65,8 @@ private:
 
   DISALLOW_COPY_AND_ASSIGN(Board);
 };
+
+}
+}
 
 #endif /* BOARD_H_ */

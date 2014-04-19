@@ -11,6 +11,12 @@
 #include "location.h"
 #include "orientation.h"
 
+namespace fool2048 {
+namespace board {
+
 Location GetAdjacentLocation(const Location &location, Orientation orientation);
+
+}
+}
 
 #endif /* LOCATION_HELPER_H_ */

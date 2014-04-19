@@ -4,6 +4,12 @@
 #include "board/adding_number_move.h"
 #include "log_util.h"
 
+namespace fool2048 {
+namespace player {
+
+using board::FullBoard;
+using board::AddingNumberMove;
+
 TEST(DefaultAddingNumberPlayerTest, NextMove) {
   InitLogConfig();
 
@@ -16,4 +22,7 @@ TEST(DefaultAddingNumberPlayerTest, NextMove) {
     LOG_UTIL_DEBUG("move: " << move);
     full_board.PlayAddingNumberMove(move);
   }
+}
+
+}
 }

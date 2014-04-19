@@ -10,6 +10,9 @@
 #include "gtest/gtest.h"
 #include "log_util.h"
 
+namespace fool2048 {
+namespace board {
+
 using namespace std;
 
 namespace {
@@ -120,4 +123,7 @@ TEST_F(FullBoardTest, IsEqual) {
   ASSERT_FALSE(IsEqual(full_board, full_board_));
   full_board.Init(CreateNumbers());
   ASSERT_TRUE(IsEqual(full_board, full_board_));
+}
+
+}
 }

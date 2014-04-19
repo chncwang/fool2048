@@ -12,6 +12,9 @@
 
 #include "location.h"
 
+namespace fool2048 {
+namespace board {
+
 class AddingNumberMove {
 public:
   enum InitialNumber {
@@ -46,5 +49,8 @@ private:
   Location location_;
   InitialNumber initial_number_;
 };
+
+}
+}
 
 #endif /* ADDING_NUMBER_MOVE_H_ */

@@ -8,6 +8,9 @@
 #ifndef FORCE_H_
 #define FORCE_H_
 
+namespace fool2048 {
+namespace board {
+
 enum Force {
   kAddingNumber = 0,
   kMoving = 1
@@ -16,6 +19,9 @@ enum Force {
 inline Force OppositeForce(Force force) {
   static Force table[2] = {kMoving, kAddingNumber};
   return table[force];
+}
+
+}
 }
 
 #endif /* FORCE_H_ */

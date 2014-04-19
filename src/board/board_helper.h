@@ -12,6 +12,9 @@
 #include "board/number.h"
 #include "board/orientation.h"
 
+namespace fool2048 {
+namespace board {
+
 class Board;
 
 Number GetBoardNumber(const Board &board, int index);
@@ -28,5 +31,8 @@ int InnerIndexStep(Orientation orientation);
 
 Location
 GetLocation(Orientation orientation, int outter_index, int inner_index);
+
+}
+}
 
 #endif /* BOARD_HELPER_H_ */

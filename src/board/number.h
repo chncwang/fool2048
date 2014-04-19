@@ -10,6 +10,12 @@
 
 #include <cstdint>
 
+namespace fool2048 {
+namespace board {
+
 typedef int16_t Number;
+
+}
+}
 
 #endif /* NUMBER_H_ */

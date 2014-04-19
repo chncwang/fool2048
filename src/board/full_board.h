@@ -16,6 +16,9 @@
 #include "board/orientation.h"
 #include "def.h"
 
+namespace fool2048 {
+namespace board {
+
 class AddingNumberMove;
 class Location;
 
@@ -67,5 +70,8 @@ private:
 
   DISALLOW_COPY_AND_ASSIGN(FullBoard);
 };
+
+}
+}
 
 #endif /* FULL_BOARD_H_ */

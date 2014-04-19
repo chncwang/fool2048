@@ -12,6 +12,9 @@
 
 #include "def.h"
 
+namespace fool2048 {
+namespace board {
+
 class Location {
 public:
   Location() :
@@ -55,5 +58,8 @@ private:
   int x_;
   int y_;
 };
+
+}
+}
 
 #endif /* LOCATION_H_ */
