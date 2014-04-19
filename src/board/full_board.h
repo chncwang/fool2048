@@ -29,7 +29,7 @@ public:
 
   ~FullBoard() = default;
 
-  void Copy(FullBoard &full_board) {
+  void Copy(const FullBoard &full_board) {
     board_.Copy(full_board.board_);
     empty_number_count_ = full_board.empty_number_count_;
   }

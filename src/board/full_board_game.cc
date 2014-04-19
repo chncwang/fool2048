@@ -13,35 +13,26 @@
 #include "location_helper.h"
 
 bool HasGameEnded(const FullBoard &full_board) {
-  return !IsMovable(full_board, Orientation::kRight) &&
-      !IsMovable(full_board, Orientation::kUp);
-}
-
-bool IsMovable(const FullBoard &full_board, Orientation orientation) {
-  bool movable = false;
+  bool ended = true;
 
   if (full_board.EmptyNumberCount() > 0) {
-    movable = true;
+    ended = false;
   } else {
-    for (int outter_i=0; outter_i<Board::kBoardLength; ++outter_i) {
-      Number last_num = -1;
-      for (int inner_i=InnerIndexBegin(orientation);
-          inner_i != InnerIndexEnd(orientation);
-          inner_i += InnerIndexStep(orientation)) {
-        Number num =
-          full_board.GetNumber(GetLocation(orientation, outter_i, inner_i));
-
-        assert(num !=Board::kEmpty);
-
-        if (num == last_num) {
-          movable = true;
-          break;
-        } else {
-          last_num = num;
-        }
+    for (int i=0; i<4; ++i) {
+      if (IsMovable(full_board, static_cast<Orientation>(i))) {
+        ended = false;
+        break;
       }
     }
   }
 
-  return movable;
+  return ended;
+}
+
+bool IsMovable(const FullBoard &full_board, Orientation orientation) {
+  FullBoard copied_full_board;
+  copied_full_board.Copy(full_board);
+  copied_full_board.PlayMovingMove(orientation);
+
+  return !IsEqual(full_board, copied_full_board);
 }

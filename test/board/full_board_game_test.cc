@@ -71,5 +71,13 @@ TEST_F(FullBoardGameTest, IsMovable) {
       ASSERT_FALSE(IsMovable(a_, orientation));
   });
 
+  ASSERT_TRUE(IsMovable(b_, Orientation::kRight));
+  ASSERT_FALSE(IsMovable(b_, Orientation::kUp));
+  ASSERT_FALSE(IsMovable(b_, Orientation::kLeft));
+  ASSERT_TRUE(IsMovable(b_, Orientation::kDown));
 
+  ForEachOrientation([&](Orientation orientation) {
+      ASSERT_TRUE(IsMovable(c_, orientation));
+      ASSERT_TRUE(IsMovable(d_, orientation));
+  });
 }
