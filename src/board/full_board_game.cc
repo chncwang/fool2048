@@ -18,30 +18,9 @@ bool HasGameEnded(const FullBoard &full_board) {
 }
 
 bool IsMovable(const FullBoard &full_board, Orientation orientation) {
-  bool movable = false;
+  FullBoard copied_full_board;
+  copied_full_board.Copy(full_board);
+  copied_full_board.PlayMovingMove(orientation);
 
-  if (full_board.EmptyNumberCount() > 0) {
-    movable = true;
-  } else {
-    for (int outter_i=0; outter_i<Board::kBoardLength; ++outter_i) {
-      Number last_num = -1;
-      for (int inner_i=InnerIndexBegin(orientation);
-          inner_i != InnerIndexEnd(orientation);
-          inner_i += InnerIndexStep(orientation)) {
-        Number num =
-          full_board.GetNumber(GetLocation(orientation, outter_i, inner_i));
-
-        assert(num !=Board::kEmpty);
-
-        if (num == last_num) {
-          movable = true;
-          break;
-        } else {
-          last_num = num;
-        }
-      }
-    }
-  }
-
-  return movable;
+  return !IsEqual(full_board, copied_full_board);
 }
