@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef PLAYER_H_
-#define PLAYER_H_
+#ifndef SRC_PLAYER_PLAYER_H_
+#define SRC_PLAYER_PLAYER_H_
 
 #include "board/full_board.h"
 
@@ -27,4 +27,4 @@ public:
 }
 }
 
-#endif /* PLAYER_H_ */
+#endif /* SRC_PLAYER_PLAYER_H_ */

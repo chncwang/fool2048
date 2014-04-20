@@ -8,7 +8,9 @@
 
 #include "gtest/gtest.h"
 
-#include "full_board_testable.h"
+#include "board/full_board_testable.h"
+#include "board/full_board_testable_builder.h"
+#include "example_boards_test.h"
 #include "log_util.h"
 
 namespace fool2048 {
@@ -16,84 +18,7 @@ namespace board {
 
 namespace {
 
-class FullBoardGameTest : public testing::Test {
-protected:
-  virtual void SetUp() {
-    InitLogConfig();
-
-    FullBoardTestable::Numbers a = {
-      2, 4, 2, 4,
-      4, 2, 4, 2,
-      2, 4, 2, 4,
-      4, 2, 4, 2
-    };
-    a_.Init(a);
-
-    FullBoardTestable::Numbers b = {
-      2, 4, 2, 4,
-      4, 2, 4, 2,
-      2, 4, 2, 4,
-      4, 2, 4, 0,
-    };
-    b_.Init(b);
-
-    FullBoardTestable::Numbers c = {
-      2, 4, 2, 4,
-      4, 2, 4, 2,
-      2, 4, 2, 4,
-      4, 2, 4, 4,
-    };
-    c_.Init(c);
-
-    FullBoardTestable::Numbers d = {
-      2, 4, 2, 4,
-      4, 2, 4, 2,
-      2, 4, 2, 4,
-      4, 2, 2, 2,
-    };
-    d_.Init(d);
-
-    FullBoardTestable::Numbers e = {
-      2, 4, 2, 0,
-      4, 2, 4, 2,
-      2, 4, 2, 4,
-      4, 2, 4, 2,
-    };
-    e_.Init(e);
-
-    FullBoardTestable::Numbers f = {
-      0, 4, 2, 2,
-      4, 2, 4, 2,
-      2, 4, 2, 4,
-      4, 2, 4, 2,
-    };
-    f_.Init(f);
-
-    FullBoardTestable::Numbers g = {
-      0, 4, 2, 4,
-      4, 2, 4, 2,
-      2, 4, 2, 4,
-      4, 2, 4, 2,
-    };
-    g_.Init(g);
-
-    FullBoardTestable::Numbers h = {
-      2, 4, 2, 4,
-      4, 2, 4, 2,
-      2, 4, 2, 4,
-      0, 2, 4, 2,
-    };
-    h_.Init(h);
-  }
-
-  FullBoardTestable a_;
-  FullBoardTestable b_;
-  FullBoardTestable c_;
-  FullBoardTestable d_;
-  FullBoardTestable e_;
-  FullBoardTestable f_;
-  FullBoardTestable g_;
-  FullBoardTestable h_;
+class FullBoardGameTest : public ExampleBoardsTest {
 };
 
 }

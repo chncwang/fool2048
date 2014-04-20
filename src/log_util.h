@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef LOG_UTIL_H_
-#define LOG_UTIL_H_
+#ifndef SRC_LOG_UTIL_H_
+#define SRC_LOG_UTIL_H_
 
 #include "log4cplus/logger.h"
 #include "log4cplus/loggingmacros.h"
@@ -22,4 +22,4 @@ void InitLogConfig();
 
 }
 
-#endif /* LOG_UTIL_H_ */
+#endif /* SRC_LOG_UTIL_H_ */

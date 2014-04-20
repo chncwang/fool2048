@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef FULL_BOARD_H_
-#define FULL_BOARD_H_
+#ifndef SRC_BOARD_FULL_BOARD_H_
+#define SRC_BOARD_FULL_BOARD_H_
 
 #include <cassert>
 
@@ -74,4 +74,4 @@ private:
 }
 }
 
-#endif /* FULL_BOARD_H_ */
+#endif /* SRC_BOARD_FULL_BOARD_H_ */

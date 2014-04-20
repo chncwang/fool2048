@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef HUMAN_GAME_H_
-#define HUMAN_GAME_H_
+#ifndef SRC_GAME_HUMAN_GAME_H_
+#define SRC_GAME_HUMAN_GAME_H_
 
 #include <game/game.h>
 
@@ -27,4 +27,4 @@ protected:
 }
 }
 
-#endif /* HUMAN_GAME_H_ */
+#endif /* SRC_GAME_HUMAN_GAME_H_ */

@@ -5,13 +5,16 @@
  *      Author: chncwang
  */
 
-#ifndef MOVING_RANDOMLY_PLAYER_H_
-#define MOVING_RANDOMLY_PLAYER_H_
+#ifndef SRC_PLAYER_MOVING_RANDOMLY_PLAYER_H_
+#define SRC_PLAYER_MOVING_RANDOMLY_PLAYER_H_
+
+#include "board/orientation.h"
+#include "player/moving_player.h"
 
 namespace fool2048 {
 namespace player {
 
-class MovingRandomlyPlayer {
+class MovingRandomlyPlayer : public MovingPlayer {
 public:
   MovingRandomlyPlayer() = default;
   ~MovingRandomlyPlayer() = default;
@@ -22,4 +25,4 @@ public:
 } /* namespace player */
 } /* namespace fool2048 */
 
-#endif /* MOVING_RANDOMLY_PLAYER_H_ */
+#endif /* SRC_PLAYER_MOVING_RANDOMLY_PLAYER_H_ */

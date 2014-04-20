@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef HUMAN_MOVING_PLAYER_H_
-#define HUMAN_MOVING_PLAYER_H_
+#ifndef SRC_PLAYER_HUMAN_MOVING_PLAYER_H_
+#define SRC_PLAYER_HUMAN_MOVING_PLAYER_H_
 
 #include "board/orientation.h"
 #include "player/moving_player.h"
@@ -25,4 +25,4 @@ public:
 }
 }
 
-#endif /* HUMAN_MOVING_PLAYER_H_ */
+#endif /* SRC_PLAYER_HUMAN_MOVING_PLAYER_H_ */

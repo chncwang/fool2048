@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef ADDING_NUMBER_MOVE_H_
-#define ADDING_NUMBER_MOVE_H_
+#ifndef SRC_BOARD_ADDING_NUMBER_MOVE_H_
+#define SRC_BOARD_ADDING_NUMBER_MOVE_H_
 
 #include <ostream>
 
@@ -53,4 +53,4 @@ private:
 }
 }
 
-#endif /* ADDING_NUMBER_MOVE_H_ */
+#endif /* SRC_BOARD_ADDING_NUMBER_MOVE_H_ */

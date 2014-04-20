@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef ORIENTATION_H_
-#define ORIENTATION_H_
+#ifndef SRC_BOARD_ORIENTATION_H_
+#define SRC_BOARD_ORIENTATION_H_
 
 #include <functional>
 
@@ -28,4 +28,4 @@ void ForEachOrientation(
 }
 }
 
-#endif /* ORIENTATION_H_ */
+#endif /* SRC_BOARD_ORIENTATION_H_ */

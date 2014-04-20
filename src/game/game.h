@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef GAME_H_
-#define GAME_H_
+#ifndef SRC_GAME_GAME_H_
+#define SRC_GAME_GAME_H_
 
 #include <memory>
 #include <ostream>
@@ -54,4 +54,4 @@ private:
 }
 }
 
-#endif /* GAME_H_ */
+#endif /* SRC_GAME_GAME_H_ */

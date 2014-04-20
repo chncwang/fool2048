@@ -20,6 +20,8 @@ protected:
   }
 };
 
+const int TIME = 100;
+
 }
 
 

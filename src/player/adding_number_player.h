@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef ADDING_NUMBER_PLAYER_H_
-#define ADDING_NUMBER_PLAYER_H_
+#ifndef SRC_PLAYER_ADDING_NUMBER_PLAYER_H_
+#define SRC_PLAYER_ADDING_NUMBER_PLAYER_H_
 
 #include "board/adding_number_move.h"
 #include "player/player.h"
@@ -19,4 +19,4 @@ typedef Player<board::AddingNumberMove> AddingNumberPlayer;
 }
 }
 
-#endif /* ADDING_NUMBER_PLAYER_H_ */
+#endif /* SRC_PLAYER_ADDING_NUMBER_PLAYER_H_ */

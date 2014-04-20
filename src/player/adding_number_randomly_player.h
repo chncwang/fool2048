@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef DEFAULT_ADDING_NUMBER_PLAYER_H_
-#define DEFAULT_ADDING_NUMBER_PLAYER_H_
+#ifndef SRC_PLAYER_DEFAULT_ADDING_NUMBER_PLAYER_H_
+#define SRC_PLAYER_DEFAULT_ADDING_NUMBER_PLAYER_H_
 
 #include "adding_number_player.h"
 
@@ -24,4 +24,4 @@ public:
 }
 }
 
-#endif /* DEFAULT_ADDING_NUMBER_PLAYER_H_ */
+#endif /* SRC_PLAYER_DEFAULT_ADDING_NUMBER_PLAYER_H_ */

@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef FULL_BOARD_TESTABLE_H_
-#define FULL_BOARD_TESTABLE_H_
+#ifndef TEST_BOARD_FULL_BOARD_TESTABLE_H_
+#define TEST_BOARD_FULL_BOARD_TESTABLE_H_
 
 #include "board/full_board.h"
 
@@ -30,4 +30,4 @@ public:
 }
 }
 
-#endif /* FULL_BOARD_TESTABLE_H_ */
+#endif /* TEST_BOARD_FULL_BOARD_TESTABLE_H_ */
