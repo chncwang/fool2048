@@ -23,12 +23,19 @@ using player::HumanMovingPlayer;
 using std::cout;
 using std::endl;
 using std::move;
+using log4cplus::Logger;
 
-HumanGame::HumanGame() : HumanGame(FullBoard()) {}
+namespace {
+
+Logger LOG = Logger::getInstance(LOG4CPLUS_TEXT("fool2048.game.HumanGame"));
+
+}
+
+HumanGame::HumanGame() : HumanGame(FullBoard()) { }
 
 HumanGame::HumanGame(FullBoard &&full_board) : Game(move(full_board),
     move(Game::AddingNumberPlayerUniquePtr(new AddingNumberRandomlyPlayer)),
-    move(Game::MovingPlayerUniquePtr(new HumanMovingPlayer))) {}
+    move(Game::MovingPlayerUniquePtr(new HumanMovingPlayer))) { }
 
 void HumanGame::BeforeAddNumber() const {
   LOG_UTIL_DEBUG("before add number.");

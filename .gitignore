@@ -38,6 +38,12 @@ build/
 fool2048
 tests
 
+# Log Files
+*.log
+
 # Eclipse Project Files
 .project
 .cproject
+
+# Netbeans Project Files
+nbproject/

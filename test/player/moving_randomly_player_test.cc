@@ -15,8 +15,11 @@ namespace fool2048 {
 namespace player {
 
 using board::Orientation;
+using log4cplus::Logger;
 
 namespace {
+
+Logger LOG = Logger::getInstance("fool2048.player.MovingRandomlyPlayerTest");
 
 class MovingRandomlyPlayerTest : public ExampleBoardsTest {};
 

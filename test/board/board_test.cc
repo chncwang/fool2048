@@ -12,6 +12,7 @@ namespace fool2048 {
 namespace board {
 
 using std::move;
+using log4cplus::Logger;
 
 namespace {
 
@@ -21,6 +22,8 @@ protected:
     InitLogConfig();
   }
 };
+
+Logger LOG = Logger::getInstance("fool2048.board.BoardTest");
 
 }
 

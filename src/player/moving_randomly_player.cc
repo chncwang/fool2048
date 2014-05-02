@@ -23,6 +23,16 @@ using board::IsMovable;
 using board::Orientation;
 using board::ForEachOrientation;
 using std::array;
+using log4cplus::Logger;
+
+namespace {
+
+//Logger LOG = Logger::getInstance(
+//    LOG4CPLUS_TEXT("fool2048.player.MovingRandomlyPlayer"));
+
+Logger LOG = Logger::getRoot();
+
+}
 
 Orientation MovingRandomlyPlayer::NextMove(const FullBoard &full_board) const {
   assert(!HasGameEnded(full_board));

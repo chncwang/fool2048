@@ -16,20 +16,13 @@
 #include <log4cplus/helpers/pointer.h>
 
 using namespace log4cplus;
-using namespace log4cplus::helpers;
 using std::auto_ptr;
 
 namespace fool2048 {
 
 void InitLogConfig() {
   initialize();
-  BasicConfigurator config;
-  config.configure();
-  SharedObjectPtr<Appender> appender(new ConsoleAppender());
-  tstring pattern =
-      LOG4CPLUS_TEXT("%D{%H:%M:%S,%Q} - %M%n");
-  appender->setLayout(auto_ptr<Layout>(new PatternLayout(pattern)));
-  Logger::getRoot().addAppender(appender);
+  PropertyConfigurator::doConfigure(LOG4CPLUS_TEXT("log4cplus.properties"));
 }
 
 }

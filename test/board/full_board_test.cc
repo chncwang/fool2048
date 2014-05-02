@@ -13,9 +13,11 @@
 namespace fool2048 {
 namespace board {
 
-using namespace std;
+using log4cplus::Logger;
 
 namespace {
+
+Logger LOG = Logger::getInstance("fool2048.board.FullBoardTest");
 
 FullBoardTestable::Numbers CreateNumbers() {
   FullBoardTestable::Numbers numbers = {

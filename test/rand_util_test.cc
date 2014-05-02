@@ -11,6 +11,8 @@
 
 namespace fool2048 {
 
+using log4cplus::Logger;
+
 namespace {
 
 class RandUtilTest : public testing::Test {
@@ -21,6 +23,8 @@ protected:
 };
 
 const int TIME = 100;
+
+Logger LOG = Logger::getInstance("fool2048.RandUtilTest");
 
 }
 

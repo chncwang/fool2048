@@ -9,6 +9,13 @@ namespace player {
 
 using board::FullBoard;
 using board::AddingNumberMove;
+using log4cplus::Logger;
+
+namespace {
+
+Logger LOG = Logger::getInstance("fool2048.player.AddingNumberRandomlyPlayerTest");
+
+}
 
 TEST(DefaultAddingNumberPlayerTest, NextMove) {
   InitLogConfig();
