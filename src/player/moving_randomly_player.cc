@@ -27,21 +27,22 @@ using log4cplus::Logger;
 
 namespace {
 
-//Logger LOG = Logger::getInstance(
-//    LOG4CPLUS_TEXT("fool2048.player.MovingRandomlyPlayer"));
-
-Logger LOG = Logger::getRoot();
+Logger LOG = Logger::getInstance(
+    LOG4CPLUS_TEXT("fool2048.player.MovingRandomlyPlayer"));
 
 }
 
 Orientation MovingRandomlyPlayer::NextMove(const FullBoard &full_board) const {
   assert(!HasGameEnded(full_board));
 
+  LOG_UTIL_DEBUG("full_board " << full_board);
+
   array<Orientation, 4> orientation_arr;
   int count = 0;
 
   ForEachOrientation([&full_board, &orientation_arr, &count]
       (Orientation orientation) {
+    LOG_UTIL_DEBUG("for each loop - orientation " << orientation);
     if (IsMovable(full_board, orientation)) {
       LOG_UTIL_DEBUG("movable orientation " << orientation);
       orientation_arr.at(count++) = orientation;

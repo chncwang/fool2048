@@ -18,6 +18,7 @@ namespace fool2048 {
 namespace game {
 
 using board::FullBoard;
+using board::Force;
 using player::AddingNumberRandomlyPlayer;
 using player::HumanMovingPlayer;
 using std::cout;
@@ -31,21 +32,19 @@ Logger LOG = Logger::getInstance(LOG4CPLUS_TEXT("fool2048.game.HumanGame"));
 
 }
 
-HumanGame::HumanGame() : HumanGame(FullBoard()) { }
-
-HumanGame::HumanGame(FullBoard &&full_board) : Game(move(full_board),
+HumanGame::HumanGame(FullBoard &&full_board, Force last_force) :
+    Game(move(full_board),
+    last_force,
     move(Game::AddingNumberPlayerUniquePtr(new AddingNumberRandomlyPlayer)),
-    move(Game::MovingPlayerUniquePtr(new HumanMovingPlayer))) { }
+    move(Game::MovingPlayerUniquePtr(new HumanMovingPlayer))) {}
 
 void HumanGame::BeforeAddNumber() const {
-  LOG_UTIL_DEBUG("before add number.");
-  FullBoardToStream(cout);
-  cout << endl;
+  LOG_UTIL_TRACE("before add number.");
+  LOG_UTIL_INFO(GetFullBoard());
 }
 
 void HumanGame::BeforeMove() const {
-  FullBoardToStream(cout);
-  cout << endl;
+  LOG_UTIL_INFO(GetFullBoard());
 }
 
 }

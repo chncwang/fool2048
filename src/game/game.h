@@ -26,21 +26,24 @@ public:
   AddingNumberPlayerUniquePtr;
   typedef std::unique_ptr<player::MovingPlayer> MovingPlayerUniquePtr;
 
+  Game(Game &&game) = default;
+
   virtual ~Game();
+
+  const board::FullBoard& GetFullBoard() const {
+      return full_board_;
+  }
 
   void Run();
 
 protected:
   Game(board::FullBoard &&full_board,
-      AddingNumberPlayerUniquePtr &&adding_number_player,
-      MovingPlayerUniquePtr &&moving_player);
+       board::Force last_force,
+       AddingNumberPlayerUniquePtr &&adding_number_player,
+       MovingPlayerUniquePtr &&moving_player);
 
   virtual void BeforeAddNumber() const {}
   virtual void BeforeMove() const {}
-
-  void FullBoardToStream(std::ostream &out) const {
-    out << full_board_;
-  }
 
 private:
   board::FullBoard full_board_;

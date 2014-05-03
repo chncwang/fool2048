@@ -16,8 +16,8 @@ using log4cplus::Logger;
 
 namespace {
 
-class BoardTest : public testing::Test {
-protected:
+class BoardTest : public ::testing::Test {
+ protected:
   virtual void SetUp() {
     InitLogConfig();
   }

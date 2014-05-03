@@ -18,12 +18,15 @@
 namespace fool2048 {
 namespace board {
 
-using namespace log4cplus;
-
-static const Logger LOG =
-    Logger::getInstance(LOG4CPLUS_TEXT("fool2048.board.ullBoard"));
-
+using log4cplus::Logger;
 using std::ostream;
+
+namespace {
+
+const Logger LOG =
+    Logger::getInstance(LOG4CPLUS_TEXT("fool2048.board.FullBoard"));
+
+}
 
 void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
   board_.SetNumber(move.GetLocation(), move.GetInitialNumber());

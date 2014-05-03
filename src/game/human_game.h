@@ -8,20 +8,23 @@
 #ifndef SRC_GAME_HUMAN_GAME_H_
 #define SRC_GAME_HUMAN_GAME_H_
 
-#include <game/game.h>
+#include "def.h"
+#include "game/game.h"
 
 namespace fool2048 {
 namespace game {
 
 class HumanGame : public Game {
 public:
-  HumanGame();
-  HumanGame(board::FullBoard &&full_board);
+  HumanGame(board::FullBoard &&full_board, board::Force last_force);
+  HumanGame(HumanGame&&) = default;
   ~HumanGame() = default;
 
 protected:
   void BeforeAddNumber() const;
   void BeforeMove() const;
+
+  DISALLOW_COPY_AND_ASSIGN(HumanGame);
 };
 
 }
