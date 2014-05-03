@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef FULL_BOARD_H_
-#define FULL_BOARD_H_
+#ifndef SRC_BOARD_FULL_BOARD_H_
+#define SRC_BOARD_FULL_BOARD_H_
 
 #include <cassert>
 
@@ -15,6 +15,9 @@
 #include "board/board.h"
 #include "board/orientation.h"
 #include "def.h"
+
+namespace fool2048 {
+namespace board {
 
 class AddingNumberMove;
 class Location;
@@ -68,4 +71,7 @@ private:
   DISALLOW_COPY_AND_ASSIGN(FullBoard);
 };
 
-#endif /* FULL_BOARD_H_ */
+}
+}
+
+#endif /* SRC_BOARD_FULL_BOARD_H_ */

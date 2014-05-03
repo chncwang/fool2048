@@ -5,12 +5,15 @@
  *      Author: chncwang
  */
 
-#ifndef BOARD_HELPER_H_
-#define BOARD_HELPER_H_
+#ifndef SRC_BOARD_BOARD_HELPER_H_
+#define SRC_BOARD_BOARD_HELPER_H_
 
 #include "board/location.h"
 #include "board/number.h"
 #include "board/orientation.h"
+
+namespace fool2048 {
+namespace board {
 
 class Board;
 
@@ -29,4 +32,7 @@ int InnerIndexStep(Orientation orientation);
 Location
 GetLocation(Orientation orientation, int outter_index, int inner_index);
 
-#endif /* BOARD_HELPER_H_ */
+}
+}
+
+#endif /* SRC_BOARD_BOARD_HELPER_H_ */

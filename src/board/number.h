@@ -5,11 +5,17 @@
  *      Author: chncwang
  */
 
-#ifndef NUMBER_H_
-#define NUMBER_H_
+#ifndef SRC_BOARD_NUMBER_H_
+#define SRC_BOARD_NUMBER_H_
 
 #include <cstdint>
 
+namespace fool2048 {
+namespace board {
+
 typedef int16_t Number;
 
-#endif /* NUMBER_H_ */
+}
+}
+
+#endif /* SRC_BOARD_NUMBER_H_ */

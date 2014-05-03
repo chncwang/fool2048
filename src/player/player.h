@@ -5,10 +5,13 @@
  *      Author: chncwang
  */
 
-#ifndef PLAYER_H_
-#define PLAYER_H_
+#ifndef SRC_PLAYER_PLAYER_H_
+#define SRC_PLAYER_PLAYER_H_
 
 #include "board/full_board.h"
+
+namespace fool2048 {
+namespace player {
 
 template<typename T>
 class Player {
@@ -16,9 +19,12 @@ public:
   Player() = default;
   virtual ~Player() {}
 
-  virtual T NextMove(const FullBoard &full_board) const = 0;
+  virtual T NextMove(const board::FullBoard &full_board) const = 0;
 
   DISALLOW_COPY_AND_ASSIGN(Player);
 };
 
-#endif /* PLAYER_H_ */
+}
+}
+
+#endif /* SRC_PLAYER_PLAYER_H_ */

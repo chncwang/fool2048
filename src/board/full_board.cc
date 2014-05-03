@@ -15,7 +15,18 @@
 #include "location_helper.h"
 #include "log_util.h"
 
+namespace fool2048 {
+namespace board {
+
+using log4cplus::Logger;
 using std::ostream;
+
+namespace {
+
+const Logger LOG =
+    Logger::getInstance(LOG4CPLUS_TEXT("fool2048.board.FullBoard"));
+
+}
 
 void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
   board_.SetNumber(move.GetLocation(), move.GetInitialNumber());
@@ -95,4 +106,7 @@ bool IsEqual(const FullBoard &a, const FullBoard &b) {
     assert(a.empty_number_count_ == b.empty_number_count_);
   }
   return result;
+}
+
+}
 }

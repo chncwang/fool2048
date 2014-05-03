@@ -4,6 +4,9 @@
 
 #include "board/location.h"
 
+namespace fool2048 {
+namespace board {
+
 TEST(LocationHelperTest, GetAdjacentLocation) {
   static Location location(1, 3);
   ASSERT_TRUE(IsEqual(GetAdjacentLocation(location, Orientation::kRight),
@@ -13,4 +16,7 @@ TEST(LocationHelperTest, GetAdjacentLocation) {
       Location(0, 3)));
   ASSERT_TRUE(IsEqual(GetAdjacentLocation(location, Orientation::kDown),
       Location(1, 4)));
+}
+
+}
 }

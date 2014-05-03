@@ -5,12 +5,18 @@
  *      Author: chncwang
  */
 
-#ifndef MOVING_PLAYER_H_
-#define MOVING_PLAYER_H_
+#ifndef SRC_PLAYER_MOVING_PLAYER_H_
+#define SRC_PLAYER_MOVING_PLAYER_H_
 
 #include "board/adding_number_move.h"
 #include "player/player.h"
 
-typedef Player<Orientation> MovingPlayer;
+namespace fool2048 {
+namespace player {
 
-#endif /* MOVING_PLAYER_H_ */
+typedef Player<board::Orientation> MovingPlayer;
+
+}
+}
+
+#endif /* SRC_PLAYER_MOVING_PLAYER_H_ */

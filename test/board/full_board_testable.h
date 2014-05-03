@@ -5,12 +5,15 @@
  *      Author: chncwang
  */
 
-#ifndef FULL_BOARD_TESTABLE_H_
-#define FULL_BOARD_TESTABLE_H_
+#ifndef TEST_BOARD_FULL_BOARD_TESTABLE_H_
+#define TEST_BOARD_FULL_BOARD_TESTABLE_H_
 
 #include "board/full_board.h"
 
 #include <array>
+
+namespace fool2048 {
+namespace board {
 
 class FullBoardTestable : public FullBoard {
 public:
@@ -24,4 +27,7 @@ public:
   void SetNumber(int x, int y, Number number);
 };
 
-#endif /* FULL_BOARD_TESTABLE_H_ */
+}
+}
+
+#endif /* TEST_BOARD_FULL_BOARD_TESTABLE_H_ */

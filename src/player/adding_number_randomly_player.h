@@ -5,17 +5,23 @@
  *      Author: chncwang
  */
 
-#ifndef DEFAULT_ADDING_NUMBER_PLAYER_H_
-#define DEFAULT_ADDING_NUMBER_PLAYER_H_
+#ifndef SRC_PLAYER_DEFAULT_ADDING_NUMBER_PLAYER_H_
+#define SRC_PLAYER_DEFAULT_ADDING_NUMBER_PLAYER_H_
 
 #include "adding_number_player.h"
+
+namespace fool2048 {
+namespace player {
 
 class AddingNumberRandomlyPlayer : public AddingNumberPlayer {
 public:
   AddingNumberRandomlyPlayer() = default;
   ~AddingNumberRandomlyPlayer() = default;
 
-  AddingNumberMove NextMove(const FullBoard &full_board) const;
+  board::AddingNumberMove NextMove(const board::FullBoard &full_board) const;
 };
 
-#endif /* DEFAULT_ADDING_NUMBER_PLAYER_H_ */
+}
+}
+
+#endif /* SRC_PLAYER_DEFAULT_ADDING_NUMBER_PLAYER_H_ */

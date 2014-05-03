@@ -8,16 +8,22 @@
 #include "board/location.h"
 #include "log_util.h"
 
+namespace fool2048 {
+namespace board {
+
 using std::move;
+using log4cplus::Logger;
 
 namespace {
 
-class BoardTest : public testing::Test {
-protected:
+class BoardTest : public ::testing::Test {
+ protected:
   virtual void SetUp() {
     InitLogConfig();
   }
 };
+
+Logger LOG = Logger::getInstance("fool2048.board.BoardTest");
 
 }
 
@@ -136,4 +142,7 @@ TEST_F(BoardTest, IsEqual) {
   ASSERT_FALSE(IsEqual(board_a, board_b));
   board_b.SetNumber(location_c, num_c);
   ASSERT_TRUE(IsEqual(board_a, board_b));
+}
+
+}
 }

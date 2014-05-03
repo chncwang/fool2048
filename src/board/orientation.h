@@ -5,10 +5,13 @@
  *      Author: chncwang
  */
 
-#ifndef ORIENTATION_H_
-#define ORIENTATION_H_
+#ifndef SRC_BOARD_ORIENTATION_H_
+#define SRC_BOARD_ORIENTATION_H_
 
 #include <functional>
+
+namespace fool2048 {
+namespace board {
 
 enum Orientation {
   kRight = 0, kUp = 1, kLeft = 2, kDown = 3
@@ -22,5 +25,7 @@ inline Orientation OppositeOrientation(Orientation orientation) {
 
 void ForEachOrientation(
     const std::function<void(Orientation orientation)> &process);
+}
+}
 
-#endif /* ORIENTATION_H_ */
+#endif /* SRC_BOARD_ORIENTATION_H_ */

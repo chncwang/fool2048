@@ -5,12 +5,15 @@
  *      Author: chncwang
  */
 
-#ifndef LOCATION_H_
-#define LOCATION_H_
+#ifndef SRC_BOARD_LOCATION_H_
+#define SRC_BOARD_LOCATION_H_
 
 #include <ostream>
 
 #include "def.h"
+
+namespace fool2048 {
+namespace board {
 
 class Location {
 public:
@@ -56,4 +59,7 @@ private:
   int y_;
 };
 
-#endif /* LOCATION_H_ */
+}
+}
+
+#endif /* SRC_BOARD_LOCATION_H_ */

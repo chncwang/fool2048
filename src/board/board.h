@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef BOARD_H_
-#define BOARD_H_
+#ifndef SRC_BOARD_BOARD_H_
+#define SRC_BOARD_BOARD_H_
 
 #include <cassert>
 
@@ -16,6 +16,9 @@
 
 #include "def.h"
 #include "board/number.h"
+
+namespace fool2048 {
+namespace board {
 
 class Location;
 
@@ -63,4 +66,7 @@ private:
   DISALLOW_COPY_AND_ASSIGN(Board);
 };
 
-#endif /* BOARD_H_ */
+}
+}
+
+#endif /* SRC_BOARD_BOARD_H_ */

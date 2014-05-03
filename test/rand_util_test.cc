@@ -9,6 +9,10 @@
 #include "gtest/gtest.h"
 #include "log_util.h"
 
+namespace fool2048 {
+
+using log4cplus::Logger;
+
 namespace {
 
 class RandUtilTest : public testing::Test {
@@ -17,6 +21,10 @@ protected:
     InitLogConfig();
   }
 };
+
+const int TIME = 100;
+
+Logger LOG = Logger::getInstance("fool2048.RandUtilTest");
 
 }
 
@@ -40,4 +48,6 @@ TEST_F(RandUtilTest, IsTrueRandomly) {
     bool result = IsTrueRandomly(0.1);
     LOG_UTIL_DEBUG("result " << result);
   }
+}
+
 }

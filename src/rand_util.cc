@@ -24,6 +24,7 @@ mt19937 gen(ts);
 
 }
 
+namespace fool2048 {
 
 int NextRandomNumber(int upper_bound) {
   assert (upper_bound > 0);
@@ -36,4 +37,6 @@ bool IsTrueRandomly(double rate) {
   assert(rate >= 0.0 && rate <= 1.0);
   static uniform_real_distribution<double> distribution(0.0, 1.0);
   return distribution(gen) < rate;
+}
+
 }

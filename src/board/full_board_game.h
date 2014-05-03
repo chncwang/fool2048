@@ -5,10 +5,13 @@
  *      Author: chncwang
  */
 
-#ifndef FULL_BOARD_GAME_H_
-#define FULL_BOARD_GAME_H_
+#ifndef SRC_BOARD_FULL_BOARD_GAME_H_
+#define SRC_BOARD_FULL_BOARD_GAME_H_
 
 #include "orientation.h"
+
+namespace fool2048 {
+namespace board {
 
 class FullBoard;
 
@@ -16,4 +19,7 @@ bool HasGameEnded(const FullBoard &full_board);
 
 bool IsMovable(const FullBoard &full_board, Orientation orientation);
 
-#endif /* FULL_BOARD_GAME_H_ */
+}
+}
+
+#endif /* SRC_BOARD_FULL_BOARD_GAME_H_ */

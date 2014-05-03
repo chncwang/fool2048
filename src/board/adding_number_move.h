@@ -5,12 +5,15 @@
  *      Author: chncwang
  */
 
-#ifndef ADDING_NUMBER_MOVE_H_
-#define ADDING_NUMBER_MOVE_H_
+#ifndef SRC_BOARD_ADDING_NUMBER_MOVE_H_
+#define SRC_BOARD_ADDING_NUMBER_MOVE_H_
 
 #include <ostream>
 
 #include "location.h"
+
+namespace fool2048 {
+namespace board {
 
 class AddingNumberMove {
 public:
@@ -47,4 +50,7 @@ private:
   InitialNumber initial_number_;
 };
 
-#endif /* ADDING_NUMBER_MOVE_H_ */
+}
+}
+
+#endif /* SRC_BOARD_ADDING_NUMBER_MOVE_H_ */

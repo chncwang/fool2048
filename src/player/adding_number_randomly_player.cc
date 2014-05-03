@@ -13,12 +13,19 @@
 #include "board/full_board_helper.h"
 #include "rand_util.h"
 
+namespace fool2048 {
+namespace player {
+
+using board::AddingNumberMove;
+using board::Board;
+using board::FullBoard;
+using board::Location;
+
 namespace {
 
 const double kNextNumberIsTwoRate = 0.9;
 
 }
-
 
 AddingNumberMove
 AddingNumberRandomlyPlayer::NextMove(const FullBoard &full_board) const {
@@ -40,4 +47,7 @@ AddingNumberRandomlyPlayer::NextMove(const FullBoard &full_board) const {
           AddingNumberMove::InitialNumber::kTwo :
           AddingNumberMove::InitialNumber::kFour;
   return AddingNumberMove(location, initial_number);
+}
+
+}
 }

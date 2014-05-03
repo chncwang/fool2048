@@ -10,9 +10,14 @@
 #include "gtest/gtest.h"
 #include "log_util.h"
 
-using namespace std;
+namespace fool2048 {
+namespace board {
+
+using log4cplus::Logger;
 
 namespace {
+
+Logger LOG = Logger::getInstance("fool2048.board.FullBoardTest");
 
 FullBoardTestable::Numbers CreateNumbers() {
   FullBoardTestable::Numbers numbers = {
@@ -120,4 +125,7 @@ TEST_F(FullBoardTest, IsEqual) {
   ASSERT_FALSE(IsEqual(full_board, full_board_));
   full_board.Init(CreateNumbers());
   ASSERT_TRUE(IsEqual(full_board, full_board_));
+}
+
+}
 }

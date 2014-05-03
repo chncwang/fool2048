@@ -5,8 +5,11 @@
  *      Author: chncwang
  */
 
-#ifndef FORCE_H_
-#define FORCE_H_
+#ifndef SRC_BOARD_FOARCE_H_
+#define SRC_BOARD_FOARCE_H_
+
+namespace fool2048 {
+namespace board {
 
 enum Force {
   kAddingNumber = 0,
@@ -18,4 +21,7 @@ inline Force OppositeForce(Force force) {
   return table[force];
 }
 
-#endif /* FORCE_H_ */
+}
+}
+
+#endif /* SRC_BOARD_FOARCE_H_ */

@@ -12,9 +12,24 @@
 #include "full_board.h"
 #include "location_helper.h"
 
+namespace fool2048 {
+namespace board {
+
 bool HasGameEnded(const FullBoard &full_board) {
-  return !IsMovable(full_board, Orientation::kRight) &&
-      !IsMovable(full_board, Orientation::kUp);
+  bool ended = true;
+
+  if (full_board.EmptyNumberCount() > 0) {
+    ended = false;
+  } else {
+    for (int i=0; i<4; ++i) {
+      if (IsMovable(full_board, static_cast<Orientation>(i))) {
+        ended = false;
+        break;
+      }
+    }
+  }
+
+  return ended;
 }
 
 bool IsMovable(const FullBoard &full_board, Orientation orientation) {
@@ -23,4 +38,7 @@ bool IsMovable(const FullBoard &full_board, Orientation orientation) {
   copied_full_board.PlayMovingMove(orientation);
 
   return !IsEqual(full_board, copied_full_board);
+}
+
+}
 }

@@ -5,17 +5,25 @@
  *      Author: chncwang
  */
 
-#ifndef LOG_UTIL_H_
-#define LOG_UTIL_H_
+#ifndef SRC_LOG_UTIL_H_
+#define SRC_LOG_UTIL_H_
 
 #include "log4cplus/logger.h"
 #include "log4cplus/loggingmacros.h"
 
+namespace fool2048 {
+
 void InitLogConfig();
 
+#define LOG_UTIL_TRACE(expression) \
+  LOG4CPLUS_TRACE(LOG, LOG4CPLUS_TEXT(expression))
 #define LOG_UTIL_DEBUG(expression) \
-  LOG4CPLUS_DEBUG(log4cplus::Logger::getRoot(), LOG4CPLUS_TEXT(expression))
+  LOG4CPLUS_DEBUG(LOG, LOG4CPLUS_TEXT(expression))
+#define LOG_UTIL_INFO(expression) \
+  LOG4CPLUS_INFO(LOG, LOG4CPLUS_TEXT(expression))
 #define LOG_UTIL_ERROR(expression) \
-  LOG4CPLUS_ERROR(log4cplus::Logger::getRoot(), LOG4CPLUS_TEXT(expression))
+  LOG4CPLUS_ERROR(LOG, LOG4CPLUS_TEXT(expression))
 
-#endif /* LOG_UTIL_H_ */
+}
+
+#endif /* SRC_LOG_UTIL_H_ */
