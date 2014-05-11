@@ -13,7 +13,6 @@
 
 #include "def.h"
 #include "board/full_board.h"
-#include "board/force.h"
 #include "player/adding_number_player.h"
 #include "player/moving_player.h"
 
@@ -31,25 +30,26 @@ public:
   virtual ~Game();
 
   const board::FullBoard& GetFullBoard() const {
-      return full_board_;
+    return full_board_;
   }
 
   void Run();
 
 protected:
   Game(board::FullBoard &&full_board,
-       board::Force last_force,
-       AddingNumberPlayerUniquePtr &&adding_number_player,
-       MovingPlayerUniquePtr &&moving_player);
+      AddingNumberPlayerUniquePtr &&adding_number_player,
+      MovingPlayerUniquePtr &&moving_player);
 
-  virtual void BeforeAddNumber() const {}
-  virtual void BeforeMove() const {}
+  virtual void BeforeAddNumber() const {
+  }
+
+  virtual void BeforeMove() const {
+  }
 
 private:
   board::FullBoard full_board_;
   AddingNumberPlayerUniquePtr adding_number_player_unique_ptr_;
   MovingPlayerUniquePtr moving_player_unique_ptr_;
-  board::Force last_force_;
 
   DISALLOW_COPY_AND_ASSIGN(Game);
 };

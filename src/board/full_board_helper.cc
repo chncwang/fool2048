@@ -4,13 +4,15 @@
  *  Created on: Apr 6, 2014
  *      Author: chncwang
  */
-#include "full_board_helper.h"
+#include "board/full_board_helper.h"
 
-#include "full_board.h"
-#include "location.h"
+#include "board/full_board.h"
+#include "board/location/location.h"
 
 namespace fool2048 {
 namespace board {
+
+using location::Location;
 
 Number GetFullBoardNumber(const FullBoard &full_board, int index) {
   return full_board.GetNumber(Board::ToLocation(index));

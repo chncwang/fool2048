@@ -8,7 +8,7 @@
 #ifndef SRC_PLAYER_MOVING_RANDOMLY_PLAYER_H_
 #define SRC_PLAYER_MOVING_RANDOMLY_PLAYER_H_
 
-#include "board/orientation.h"
+#include "board/location/orientation.h"
 #include "player/moving_player.h"
 
 namespace fool2048 {
@@ -19,7 +19,7 @@ public:
   MovingRandomlyPlayer() = default;
   ~MovingRandomlyPlayer() = default;
 
-  board::Orientation NextMove(const board::FullBoard &full_board) const;
+  board::location::Orientation NextMove(const board::FullBoard &full_board) const;
 };
 
 } /* namespace player */

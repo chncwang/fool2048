@@ -19,7 +19,7 @@ namespace player {
 using board::AddingNumberMove;
 using board::Board;
 using board::FullBoard;
-using board::Location;
+using board::location::Location;
 
 namespace {
 
@@ -44,8 +44,8 @@ AddingNumberRandomlyPlayer::NextMove(const FullBoard &full_board) const {
 
   AddingNumberMove::InitialNumber initial_number =
       IsTrueRandomly(kNextNumberIsTwoRate) ?
-          AddingNumberMove::InitialNumber::kTwo :
-          AddingNumberMove::InitialNumber::kFour;
+      AddingNumberMove::InitialNumber::kTwo :
+      AddingNumberMove::InitialNumber::kFour;
   return AddingNumberMove(location, initial_number);
 }
 

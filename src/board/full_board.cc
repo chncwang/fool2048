@@ -5,19 +5,22 @@
  *      Author: chncwang
  */
 
-#include "full_board.h"
+#include "board/full_board.h"
 
 #include <cassert>
 
-#include "adding_number_move.h"
-#include "board_helper.h"
-#include "location.h"
-#include "location_helper.h"
+#include "board/adding_number_move.h"
+#include "board/board_helper.h"
+#include "board/location/location.h"
+#include "board/location/location_helper.h"
+#include "board/zobrist_hash_factor.h"
 #include "log_util.h"
 
 namespace fool2048 {
 namespace board {
 
+using location::Location;
+using location::Orientation;
 using log4cplus::Logger;
 using std::ostream;
 
@@ -28,12 +31,18 @@ const Logger LOG =
 
 }
 
+FullBoard::FullBoard() : empty_number_count_(Board::kBoardLengthSquare),
+    last_force_(Force::kMoving) { }
+
 void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
+  last_force_ = Force::kAddingNumber;
   board_.SetNumber(move.GetLocation(), move.GetInitialNumber());
   --empty_number_count_;
 }
 
 void FullBoard::PlayMovingMove(Orientation orientation) {
+  last_force_ = Force::kMoving;
+
   for (int outter_i = 0; outter_i < Board::kBoardLength; ++outter_i) {
     Location last_number_location;
     bool merge_available = false;
@@ -45,8 +54,8 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
       Location current_location = GetLocation(orientation, outter_i, inner_i);
       Number number = board_.GetNumber(current_location);
 
-      LOG_UTIL_DEBUG("current_location " << current_location << " number " <<
-          number);
+      LOG_UTIL_DEBUG(LOG, "current_location " << current_location <<
+          " number " << number);
 
       if (number == Board::kEmpty) continue;
 
@@ -54,7 +63,7 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
 
       if (merge_available && number == board_.GetNumber(last_number_location)
           && number != Board::kEmpty) {
-        LOG_UTIL_DEBUG("merge condition: " << "last_number_location " <<
+        LOG_UTIL_DEBUG(LOG, "merge condition: " << "last_number_location " <<
             last_number_location << " number " <<
             GetNumber(last_number_location));
 
@@ -64,14 +73,14 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
         ++empty_number_count_;
       } else {
         if (!first_number_moved) {
-          LOG_UTIL_DEBUG("move first number condition");
+          LOG_UTIL_DEBUG(LOG, "move first number condition");
           assert(!merge_available);
           first_number_moved = true;
           merge_available = true;
           last_number_location.Copy(
               GetLocation(orientation, outter_i, InnerIndexBegin(orientation)));
         } else {
-          LOG_UTIL_DEBUG("move other number condition");
+          LOG_UTIL_DEBUG(LOG, "move other number condition");
           assert(first_number_moved);
           merge_available = true;
           last_number_location.Copy(GetAdjacentLocation(last_number_location,
@@ -83,6 +92,18 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
   }
 }
 
+HashKey FullBoard::ZobristHash() const {
+  ZobristHashFactor *zobrist_hash_factor = ZobristHashFactor::GetInstance();
+  HashKey hash_key = zobrist_hash_factor->GetForceFactor(last_force_);
+
+  board_.ForEachLocation([&hash_key, zobrist_hash_factor](
+      const Location &location, Number number) {
+    hash_key ^= zobrist_hash_factor->GetLocationFactor(location, number);
+  });
+
+  return hash_key;
+}
+
 void FullBoard::SetNumberAsDouble(const Location &location) {
   ValidateBeforeSetDouble(location);
   board_.SetNumber(location, board_.GetNumber(location) << 1);
@@ -90,14 +111,15 @@ void FullBoard::SetNumberAsDouble(const Location &location) {
 
 void FullBoard::ValidateBeforeSetDouble(const Location &location) const {
   Number number = board_.GetNumber(location);
-  LOG_UTIL_DEBUG("location " << location << " number " << number);
+  LOG_UTIL_DEBUG(LOG, "location " << location << " number " << number);
   assert(number > 0 && number < kMaxPossibleNumber
       && (number & (number - 1)) == 0);
 }
 
 ostream& operator<<(ostream & out, const FullBoard &full_board) {
   return out << "[" << full_board.board_ << ", empty_number_count_: "
-      << full_board.empty_number_count_ << "]";
+      << full_board.empty_number_count_ << ", last_force_ " <<
+      full_board.last_force_ << "]";
 }
 
 bool IsEqual(const FullBoard &a, const FullBoard &b) {

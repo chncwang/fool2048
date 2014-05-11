@@ -5,10 +5,11 @@
  *  Created on: Apr 6, 2014
  *      Author: chncwang
  */
-#include "location_helper.h"
+#include "board/location/location_helper.h"
 
 namespace fool2048 {
 namespace board {
+namespace location {
 
 Location GetAdjacentLocation(const Location &location, Orientation orientation) {
   static const int kOrientationUnit[4][2] = { 1, 0, 0, -1, -1, 0, 0, 1 };
@@ -16,5 +17,6 @@ Location GetAdjacentLocation(const Location &location, Orientation orientation) 
       location.Y() + kOrientationUnit[orientation][1]);
 }
 
+}
 }
 }

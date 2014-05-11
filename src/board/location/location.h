@@ -5,8 +5,8 @@
  *      Author: chncwang
  */
 
-#ifndef SRC_BOARD_LOCATION_H_
-#define SRC_BOARD_LOCATION_H_
+#ifndef SRC_BOARD_LOCATION_LOCATION_H_
+#define SRC_BOARD_LOCATION_LOCATION_H_
 
 #include <ostream>
 
@@ -14,6 +14,7 @@
 
 namespace fool2048 {
 namespace board {
+namespace location {
 
 class Location {
 public:
@@ -61,5 +62,6 @@ private:
 
 }
 }
+}
 
-#endif /* SRC_BOARD_LOCATION_H_ */
+#endif /* SRC_BOARD_LOCATION_LOCATION_H_ */

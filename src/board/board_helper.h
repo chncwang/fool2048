@@ -8,9 +8,9 @@
 #ifndef SRC_BOARD_BOARD_HELPER_H_
 #define SRC_BOARD_BOARD_HELPER_H_
 
-#include "board/location.h"
-#include "board/number.h"
-#include "board/orientation.h"
+#include "board/location/location.h"
+#include "board/def.h"
+#include "board/location/orientation.h"
 
 namespace fool2048 {
 namespace board {
@@ -23,14 +23,14 @@ Number GetBoardNumber(const Board &board, int x, int y);
 
 void SetBoardNumber(Board *board, int x, int y, Number number);
 
-int InnerIndexBegin(Orientation orientation);
+int InnerIndexBegin(location::Orientation orientation);
 
-int InnerIndexEnd(Orientation orientation);
+int InnerIndexEnd(location::Orientation orientation);
 
-int InnerIndexStep(Orientation orientation);
+int InnerIndexStep(location::Orientation orientation);
 
-Location
-GetLocation(Orientation orientation, int outter_index, int inner_index);
+location::Location
+GetLocation(location::Orientation orientation, int outter_index, int inner_index);
 
 }
 }

@@ -10,25 +10,27 @@
 
 #include <ostream>
 
-#include "location.h"
+#include "board/location/location.h"
 
 namespace fool2048 {
 namespace board {
 
 class AddingNumberMove {
 public:
+
   enum InitialNumber {
     kTwo = 2, kFour = 4
   };
 
-  AddingNumberMove(const Location &location, InitialNumber initial_number) :
+  AddingNumberMove(const location::Location &location,
+      InitialNumber initial_number) :
       initial_number_(initial_number) {
     location_.Copy(location);
   }
 
   AddingNumberMove(AddingNumberMove &&adding_number_move) = default;
 
-  const Location& GetLocation() const {
+  const location::Location& GetLocation() const {
     return location_;
   }
 
@@ -36,9 +38,10 @@ public:
     return initial_number_;
   }
 
-  DISALLOW_COPY_AND_ASSIGN (AddingNumberMove);
+  DISALLOW_COPY_AND_ASSIGN(AddingNumberMove);
 
 private:
+
   friend std::ostream& operator<<(std::ostream &out,
       const AddingNumberMove &adding_number_move) {
     out << "[location_:" << adding_number_move.location_ << ", initial_number_:"
@@ -46,7 +49,7 @@ private:
     return out;
   }
 
-  Location location_;
+  location::Location location_;
   InitialNumber initial_number_;
 };
 

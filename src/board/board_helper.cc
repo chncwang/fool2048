@@ -5,12 +5,15 @@
  *  Created on: Apr 6, 2014
  *      Author: chncwang
  */
-#include "board.h"
-#include "board_helper.h"
-#include "location.h"
+#include "board/board.h"
+#include "board/board_helper.h"
+#include "board/location/location.h"
 
 namespace fool2048 {
 namespace board {
+
+using location::Location;
+using location::Orientation;
 
 namespace {
   static const bool is_orientation_to_large_side[4] = {

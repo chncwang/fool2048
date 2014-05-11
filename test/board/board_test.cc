@@ -5,19 +5,22 @@
 
 #include "gtest/gtest.h"
 #include "board/board_helper.h"
-#include "board/location.h"
+#include "board/location/location.h"
 #include "log_util.h"
 
 namespace fool2048 {
 namespace board {
 
 using std::move;
+using location::Location;
 using log4cplus::Logger;
 
 namespace {
 
 class BoardTest : public ::testing::Test {
+
  protected:
+
   virtual void SetUp() {
     InitLogConfig();
   }
@@ -32,7 +35,7 @@ TEST_F(BoardTest, Constructor) {
   Number empty_number = Board::kEmpty;
 
   board.ForEachLocation([empty_number](const Location &location,
-      Number *number) {
+      Number * number) {
     ASSERT_EQ(*number, empty_number);
   });
 }
@@ -41,7 +44,7 @@ TEST_F(BoardTest, Copy) {
   Board board;
 
   board.ForEachLocation([](const Location &location,
-      Number *number) {
+      Number * number) {
     *number = 2 << (location.X() + location.Y());
   });
 
@@ -49,13 +52,13 @@ TEST_F(BoardTest, Copy) {
   copied_board.Copy(board);
 
   copied_board.ForEachLocation([&board](const Location &location,
-      Number *number) {
+      Number * number) {
     ASSERT_EQ(*number, board.GetNumber(location));
   });
 
   Board move_copied_board(move(board));
   move_copied_board.ForEachLocation([&copied_board](const Location &location,
-      Number *number) {
+      Number * number) {
     ASSERT_EQ(*number, copied_board.GetNumber(location));
   });
 }
@@ -79,7 +82,7 @@ TEST_F(BoardTest, ForEachLocation) {
     }
   }
 
-  board.ForEachLocation([](const Location &location, Number *number) {
+  board.ForEachLocation([](const Location &location, Number * number) {
     *number <<= 1;
   });
 
@@ -119,7 +122,7 @@ TEST_F(BoardTest, ToLocation) {
 TEST_F(BoardTest, OperatorDoubleLeftArrow) {
   Board board;
   board.SetNumber(Location(2, 2), 2048);
-  LOG_UTIL_DEBUG("board" << board);
+  LOG_UTIL_DEBUG(LOG, "board" << board);
 }
 
 TEST_F(BoardTest, IsEqual) {

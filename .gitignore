@@ -39,7 +39,7 @@ fool2048
 tests
 
 # Log Files
-*.log
+logs/
 
 # Eclipse Project Files
 .project

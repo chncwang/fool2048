@@ -1,9 +1,10 @@
-#include "orientation.h"
+#include "board/location/orientation.h"
 
 using std::function;
 
 namespace fool2048 {
 namespace board {
+namespace location {
 
 void ForEachOrientation(
     const function<void(Orientation orientation)> &process) {
@@ -12,5 +13,6 @@ void ForEachOrientation(
   }
 }
 
+}
 }
 }

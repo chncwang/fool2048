@@ -21,7 +21,7 @@ namespace game {
 
 template<class G>
 class NewGameBuilder {
- public:
+public:
   NewGameBuilder();
   ~NewGameBuilder() = default;
 
@@ -32,39 +32,33 @@ class NewGameBuilder {
 
   G Build() const;
 
- private:
-  board::Force last_force_;
+private:
   game::Game::AddingNumberPlayerUniquePtr initialization_player_;
 };
 
 template<class G>
-NewGameBuilder<G>::NewGameBuilder() : last_force_(board::Force::kAddingNumber),
+NewGameBuilder<G>::NewGameBuilder() :
     initialization_player_(game::Game::AddingNumberPlayerUniquePtr(
-    new player::AddingNumberRandomlyPlayer)) {}
-
-template<class G>
-NewGameBuilder<G>& NewGameBuilder<G>::SetLastForce(board::Force last_force) {
-  last_force_ = last_force;
-  return *this;
+    new player::AddingNumberRandomlyPlayer)) {
 }
 
 template<class G>
 NewGameBuilder<G>& NewGameBuilder<G>::SetAddingNumberPlayer(
     game::Game::AddingNumberPlayerUniquePtr &&initialization_player) {
-    initialization_player_ = std::move(initialization_player);
-    return *this;
+  initialization_player_ = std::move(initialization_player);
+  return *this;
 }
 
 template<class G>
 G NewGameBuilder<G>::Build() const {
   board::FullBoard full_board;
 
-  for (int i=0; i<2; ++i) {
+  for (int i = 0; i < 2; ++i) {
     board::AddingNumberMove move = initialization_player_->NextMove(full_board);
     full_board.PlayAddingNumberMove(move);
   }
 
-  return G(std::move(full_board), last_force_);
+  return G(std::move(full_board));
 }
 
 } /* namespace game */

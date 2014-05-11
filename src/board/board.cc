@@ -5,22 +5,23 @@
  *      Author: chncwang
  */
 
-#include "board.h"
+#include "board/board.h"
 
 #include <string>
 #include <utility>
 
-#include "board_helper.h"
-#include "location.h"
+#include "board/board_helper.h"
+#include "board/location/location.h"
 
+namespace fool2048 {
+namespace board {
+
+using location::Location;
 using std::endl;
 using std::function;
 using std::ostream;
 using std::string;
 using std::swap;
-
-namespace fool2048 {
-namespace board {
 
 namespace {
 
@@ -48,7 +49,8 @@ string CreateBlankString(int width) {
 }
 
 class IndexLocationTable {
-public:
+
+ public:
   IndexLocationTable();
 
   int index(const Location &location) const {
@@ -59,22 +61,25 @@ public:
     return locations_.at(index);
   }
 
-private:
+ private:
   std::array<Location, Board::kBoardLengthSquare> locations_;
-  std::array<std::array<int, Board::kBoardLength>, Board::kBoardLength> indexes_;
+  std::array<std::array<int, Board::kBoardLength>, Board::kBoardLength>
+  indexes_;
 };
 
 const IndexLocationTable kIndexLocationTable;
 
 IndexLocationTable::IndexLocationTable() {
-  Board::ForEachLokation([this](const Location &location) {
-      int index = location.Y() * Board::kBoardLength + location.X();
-      indexes_.at(location.Y()).at(location.X()) = index;
-      locations_.at(index).Copy(location);
+  Board::ForEachLokation([this](const Location & location) {
+    int index = location.Y() * Board::kBoardLength + location.X();
+    indexes_.at(location.Y()).at(location.X()) = index;
+        locations_.at(index).Copy(location);
   });
 }
 
 }
+
+const Number Board::kEmpty = 0;
 
 Board::Board() {
   for (auto &numbers : numbers_) {
@@ -92,8 +97,16 @@ void Board::SetNumber(const Location &location, Number number) {
 
 void Board::ForEachLocation(
     const function<void(const Location&, Number*)> &process) {
-  Board::ForEachLokation([this, process](const Location &location) {
+  Board::ForEachLokation([this, &process](const Location & location) {
     process(location, &numbers_.at(location.Y()).at(location.X()));
+  });
+}
+
+void Board::ForEachLocation(const std::function<void(const location::Location&,
+    Number)> &process) const {
+  const_cast<Board *>(this)->ForEachLocation([&process](
+      const Location &location, Number * number) {
+    process(location, *number);
   });
 }
 
@@ -118,19 +131,20 @@ ostream& operator<<(ostream &out, const Board &board) {
   int max_width = MaxBlankWidth(board);
 
   (const_cast<Board &>(board)).ForEachLocation(
-      [&out, max_width](const Location &location, Number *number) {
-    out << CreateBlankString(max_width + 1 - NumberWidth(*number)) << *number;
-    if (location.X() == Board::kLargeSideXY) {
-      out << endl;
-    }
-  });
+      [&out, max_width](const Location &location, Number * number) {
+        out << CreateBlankString(max_width + 1 - NumberWidth(*number)) <<
+            *number;
+        if (location.X() == Board::kLargeSideXY) {
+          out << endl;
+        }
+      });
 
   out << "]";
   return out;
 }
 
 bool IsEqual(const Board &a, const Board &b) {
-  for (int i=0; i<Board::kBoardLengthSquare; ++i) {
+  for (int i = 0; i < Board::kBoardLengthSquare; ++i) {
     if (GetBoardNumber(a, i) != GetBoardNumber(b, i)) {
       return false;
     }

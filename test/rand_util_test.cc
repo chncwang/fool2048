@@ -24,7 +24,7 @@ protected:
 
 const int TIME = 100;
 
-Logger LOG = Logger::getInstance("fool2048.RandUtilTest");
+const Logger LOG = Logger::getInstance("fool2048.RandUtilTest");
 
 }
 
@@ -32,13 +32,13 @@ Logger LOG = Logger::getInstance("fool2048.RandUtilTest");
 TEST_F(RandUtilTest, NextRandomNumber) {
   for (int i=0; i<100; ++i) {
     int random_num = NextRandomNumber(100);
-    LOG_UTIL_DEBUG("random_num " << random_num);
+    LOG_UTIL_DEBUG(LOG, "random_num " << random_num);
     ASSERT_TRUE(random_num >= 0 && random_num < 100);
   }
 
   for (int i=0; i<100; ++i) {
     int random_num = NextRandomNumber(1);
-    LOG_UTIL_DEBUG("random_num - should be 0 " << random_num);
+    LOG_UTIL_DEBUG(LOG, "random_num - should be 0 " << random_num);
     ASSERT_EQ(random_num, 0);
   }
 }
@@ -46,7 +46,7 @@ TEST_F(RandUtilTest, NextRandomNumber) {
 TEST_F(RandUtilTest, IsTrueRandomly) {
   for (int i=0; i<100; ++i) {
     bool result = IsTrueRandomly(0.1);
-    LOG_UTIL_DEBUG("result " << result);
+    LOG_UTIL_DEBUG(LOG, "result " << result);
   }
 }
 

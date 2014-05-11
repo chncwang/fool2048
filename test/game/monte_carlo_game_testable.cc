@@ -26,15 +26,15 @@ const Logger LOG = Logger::getInstance("fool2048.game.MonteCarloGameTestable");
 
 }
 
-MonteCarloGameTestable::MonteCarloGameTestable(board::FullBoard &&full_board,
-    board::Force force) : MonteCarloGame(move(full_board), force) { }
+MonteCarloGameTestable::MonteCarloGameTestable(board::FullBoard &&full_board) :
+    MonteCarloGame(move(full_board)) { }
 
 void MonteCarloGameTestable::BeforeAddNumber() const {
-  LOG_UTIL_INFO(GetFullBoard());
+  LOG_UTIL_INFO(LOG, GetFullBoard());
 }
 
 void MonteCarloGameTestable::BeforeMove() const {
-  LOG_UTIL_INFO(GetFullBoard());
+  LOG_UTIL_INFO(LOG, GetFullBoard());
 }
 
 } /* namespace game */

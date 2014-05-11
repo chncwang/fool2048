@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   MonteCarloGame.h
  * Author: chncwang
  *
@@ -16,12 +16,12 @@ namespace fool2048 {
 namespace game {
 
 class MonteCarloGame : public Game {
- public:
-  MonteCarloGame(board::FullBoard &&full_board, board::Force force);
+public:
+  MonteCarloGame(board::FullBoard &&full_board);
   MonteCarloGame(MonteCarloGame&&) = default;
   ~MonteCarloGame() = default;
 
- private:
+private:
   DISALLOW_COPY_AND_ASSIGN(MonteCarloGame);
 };
 

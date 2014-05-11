@@ -8,7 +8,7 @@
 #ifndef SRC_BOARD_FULL_BOARD_HELPER_H_
 #define SRC_BOARD_FULL_BOARD_HELPER_H_
 
-#include "number.h"
+#include "def.h"
 
 namespace fool2048 {
 namespace board {

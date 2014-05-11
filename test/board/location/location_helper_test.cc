@@ -1,11 +1,12 @@
-#include "board/location_helper.h"
+#include "board/location/location_helper.h"
 
 #include "gtest/gtest.h"
 
-#include "board/location.h"
+#include "board/location/location.h"
 
 namespace fool2048 {
 namespace board {
+namespace location {
 
 TEST(LocationHelperTest, GetAdjacentLocation) {
   static Location location(1, 3);
@@ -18,5 +19,6 @@ TEST(LocationHelperTest, GetAdjacentLocation) {
       Location(1, 4)));
 }
 
+}
 }
 }

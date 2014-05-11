@@ -13,23 +13,28 @@
 #include <ostream>
 
 #include "board/board.h"
-#include "board/orientation.h"
+#include "board/def.h"
+#include "board/location/orientation.h"
 #include "def.h"
+#include "force.h"
 
 namespace fool2048 {
 namespace board {
 
 class AddingNumberMove;
+
+namespace location {
+
 class Location;
+
+}
 
 class FullBoard {
 public:
   static const Number kMaxPossibleNumber = 2048 * 8;
 
-  FullBoard() : empty_number_count_(Board::kBoardLengthSquare) {}
-
+  FullBoard();
   FullBoard(FullBoard &&full_board) = default;
-
   ~FullBoard() = default;
 
   void Copy(const FullBoard &full_board) {
@@ -37,7 +42,7 @@ public:
     empty_number_count_ = full_board.empty_number_count_;
   }
 
-  Number GetNumber(const Location &location) const {
+  Number GetNumber(const location::Location &location) const {
     return board_.GetNumber(location);
   }
 
@@ -45,11 +50,18 @@ public:
     return empty_number_count_;
   }
 
+  Force LastForce() const {
+    return last_force_;
+  }
+
   void PlayAddingNumberMove(const AddingNumberMove &move);
-  void PlayMovingMove(Orientation orientation);
+  void PlayMovingMove(location::Orientation orientation);
+
+  HashKey ZobristHash() const;
 
 protected:
-  void SetNumber(const Location &location, Number number) {
+
+  void SetNumber(const location::Location &location, Number number) {
     board_.SetNumber(location, number);
   }
 
@@ -58,8 +70,8 @@ protected:
   }
 
 private:
-  void SetNumberAsDouble(const Location &location);
-  void ValidateBeforeSetDouble(const Location &location) const;
+  void SetNumberAsDouble(const location::Location &location);
+  void ValidateBeforeSetDouble(const location::Location &location) const;
 
   friend std::ostream& operator<<(std::ostream & out,
       const FullBoard &full_board);
@@ -67,6 +79,7 @@ private:
 
   Board board_;
   int empty_number_count_;
+  Force last_force_;
 
   DISALLOW_COPY_AND_ASSIGN(FullBoard);
 };

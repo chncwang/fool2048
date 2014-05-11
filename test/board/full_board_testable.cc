@@ -1,9 +1,11 @@
 #include "full_board_testable.h"
 
-#include "board/location.h"
+#include "board/location/location.h"
 
 namespace fool2048 {
 namespace board {
+
+using location::Location;
 
 void FullBoardTestable::Init(const Numbers &numbers) {
   int empty_number_count = 0;

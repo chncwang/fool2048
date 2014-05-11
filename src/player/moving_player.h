@@ -14,7 +14,7 @@
 namespace fool2048 {
 namespace player {
 
-typedef Player<board::Orientation> MovingPlayer;
+typedef Player<board::location::Orientation> MovingPlayer;
 
 }
 }

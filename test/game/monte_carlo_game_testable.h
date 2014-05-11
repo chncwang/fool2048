@@ -14,16 +14,16 @@ namespace fool2048 {
 namespace game {
 
 class MonteCarloGameTestable : public MonteCarloGame {
- public:
-  MonteCarloGameTestable(board::FullBoard &&full_board, board::Force force);
+public:
+  MonteCarloGameTestable(board::FullBoard &&full_board);
   MonteCarloGameTestable(MonteCarloGameTestable&&) = default;
   ~MonteCarloGameTestable() = default;
 
- protected:
+protected:
   void BeforeAddNumber() const;
   void BeforeMove() const;
 
- private:
+private:
   DISALLOW_COPY_AND_ASSIGN(MonteCarloGameTestable);
 };
 

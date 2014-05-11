@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   MonteCarloGame.cc
  * Author: chncwang
- * 
+ *
  * Created on May 2, 2014, 8:48 PM
  */
 
@@ -23,12 +23,11 @@ using player::AddingNumberRandomlyPlayer;
 using player::MovingRandomlyPlayer;
 using std::move;
 
-MonteCarloGame::MonteCarloGame(FullBoard &&full_board, Force last_force) :
+MonteCarloGame::MonteCarloGame(FullBoard &&full_board) :
     Game(move(full_board),
-    last_force,
     std::move(Game::AddingNumberPlayerUniquePtr(
-        new AddingNumberRandomlyPlayer)),
-    std::move(Game::MovingPlayerUniquePtr(new MovingRandomlyPlayer))) {}
+    new AddingNumberRandomlyPlayer)),
+    std::move(Game::MovingPlayerUniquePtr(new MovingRandomlyPlayer))) { }
 
 }
 }

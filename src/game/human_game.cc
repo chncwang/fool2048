@@ -32,19 +32,18 @@ Logger LOG = Logger::getInstance(LOG4CPLUS_TEXT("fool2048.game.HumanGame"));
 
 }
 
-HumanGame::HumanGame(FullBoard &&full_board, Force last_force) :
+HumanGame::HumanGame(FullBoard &&full_board) :
     Game(move(full_board),
-    last_force,
     move(Game::AddingNumberPlayerUniquePtr(new AddingNumberRandomlyPlayer)),
-    move(Game::MovingPlayerUniquePtr(new HumanMovingPlayer))) {}
+    move(Game::MovingPlayerUniquePtr(new HumanMovingPlayer))) { }
 
 void HumanGame::BeforeAddNumber() const {
-  LOG_UTIL_TRACE("before add number.");
-  LOG_UTIL_INFO(GetFullBoard());
+  LOG_UTIL_TRACE(LOG, "before add number.");
+  LOG_UTIL_INFO(LOG, GetFullBoard());
 }
 
 void HumanGame::BeforeMove() const {
-  LOG_UTIL_INFO(GetFullBoard());
+  LOG_UTIL_INFO(LOG, GetFullBoard());
 }
 
 }

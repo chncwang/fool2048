@@ -20,8 +20,8 @@ namespace player {
 using board::FullBoard;
 using board::HasGameEnded;
 using board::IsMovable;
-using board::Orientation;
-using board::ForEachOrientation;
+using board::location::Orientation;
+using board::location::ForEachOrientation;
 using std::array;
 using log4cplus::Logger;
 
@@ -35,23 +35,23 @@ Logger LOG = Logger::getInstance(
 Orientation MovingRandomlyPlayer::NextMove(const FullBoard &full_board) const {
   assert(!HasGameEnded(full_board));
 
-  LOG_UTIL_DEBUG("full_board " << full_board);
+  LOG_UTIL_DEBUG(LOG, "full_board " << full_board);
 
   array<Orientation, 4> orientation_arr;
   int count = 0;
 
   ForEachOrientation([&full_board, &orientation_arr, &count]
       (Orientation orientation) {
-    LOG_UTIL_DEBUG("for each loop - orientation " << orientation);
+    LOG_UTIL_DEBUG(LOG, "for each loop - orientation " << orientation);
     if (IsMovable(full_board, orientation)) {
-      LOG_UTIL_DEBUG("movable orientation " << orientation);
+      LOG_UTIL_DEBUG(LOG, "movable orientation " << orientation);
       orientation_arr.at(count++) = orientation;
     }
   });
 
-  LOG_UTIL_DEBUG("count " << count);
+  LOG_UTIL_DEBUG(LOG, "count " << count);
   int rand = NextRandomNumber(count);
-  LOG_UTIL_DEBUG("rand " << rand);
+  LOG_UTIL_DEBUG(LOG, "rand " << rand);
   return orientation_arr.at(rand);
 }
 

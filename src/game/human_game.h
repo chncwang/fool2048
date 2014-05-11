@@ -16,7 +16,7 @@ namespace game {
 
 class HumanGame : public Game {
 public:
-  HumanGame(board::FullBoard &&full_board, board::Force last_force);
+  HumanGame(board::FullBoard &&full_board);
   HumanGame(HumanGame&&) = default;
   ~HumanGame() = default;
 

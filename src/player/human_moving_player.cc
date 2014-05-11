@@ -13,7 +13,7 @@ namespace fool2048 {
 namespace player {
 
 using board::FullBoard;
-using board::Orientation;
+using board::location::Orientation;
 using std::cin;
 using std::cout;
 

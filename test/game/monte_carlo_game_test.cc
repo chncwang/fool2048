@@ -20,7 +20,9 @@ using game::MonteCarloGameTestable;
 namespace {
 
 class MonteCarloGameTest : public ::testing::Test {
+
  protected:
+
   virtual void SetUp() {
     InitLogConfig();
   }

@@ -24,9 +24,9 @@ TEST(DefaultAddingNumberPlayerTest, NextMove) {
   AddingNumberRandomlyPlayer player;
   const AddingNumberPlayer &adding_number_player = player;
   while (full_board.EmptyNumberCount() > 0) {
-    LOG_UTIL_DEBUG("full_board: " << full_board);
+    LOG_UTIL_DEBUG(LOG, "full_board: " << full_board);
     AddingNumberMove move = adding_number_player.NextMove(full_board);
-    LOG_UTIL_DEBUG("move: " << move);
+    LOG_UTIL_DEBUG(LOG, "move: " << move);
     full_board.PlayAddingNumberMove(move);
   }
 }

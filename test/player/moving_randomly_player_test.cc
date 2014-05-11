@@ -16,7 +16,7 @@ namespace fool2048 {
 namespace player {
 
 using board::FullBoard;
-using board::Orientation;
+using board::location::Orientation;
 using log4cplus::Logger;
 
 namespace {
@@ -37,7 +37,7 @@ TEST_F(MovingRandomlyPlayerTest, NextMove) {
   auto test_board = [&](const FullBoard &full_board) {
     for (int i = 0; i < TIME; ++i) {
       Orientation orientation = player.NextMove(full_board);
-      LOG_UTIL_DEBUG("orientation " << orientation);
+      LOG_UTIL_DEBUG(LOG, "orientation " << orientation);
     }
   };
 

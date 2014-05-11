@@ -16,6 +16,9 @@
 namespace fool2048 {
 namespace board {
 
+using location::Orientation;
+using location::ForEachOrientation;
+
 namespace {
 
 class FullBoardGameTest : public ExampleBoardsTest {

@@ -14,20 +14,25 @@
 #include <functional>
 #include <ostream>
 
-#include "def.h"
-#include "board/number.h"
+#include "../def.h"
+#include "board/def.h"
+#include "location/location.h"
 
 namespace fool2048 {
 namespace board {
 
+namespace location {
+
 class Location;
+
+}
 
 class Board {
 public:
   static const int kBoardLength = 4;
   static const int kBoardLengthSquare = kBoardLength * kBoardLength;
   static const int kLargeSideXY = kBoardLength - 1;
-  static const Number kEmpty = 0;
+  static const Number kEmpty;
 
   Board();
 
@@ -39,19 +44,21 @@ public:
     numbers_ = board.numbers_;
   }
 
-  Number GetNumber(const Location &location) const;
+  Number GetNumber(const location::Location &location) const;
 
-  void SetNumber(const Location &location, Number number);
+  void SetNumber(const location::Location &location, Number number);
 
   void ForEachLocation(const std::function<
-      void(const Location&, Number*)> &process);
+      void(const location::Location&, Number*)> &process);
+  void ForEachLocation(const std::function<void(const location::Location&,
+      Number)> &process) const;
 
   static void ForEachLokation(
-      const std::function<void(const Location&)> &process);
+      const std::function<void(const location::Location&)> &process);
 
-  static int ToIndex(const Location &location);
+  static int ToIndex(const location::Location &location);
 
-  static const Location& ToLocation(int index);
+  static const location::Location& ToLocation(int index);
 
 private:
   typedef std::ostream ostream;

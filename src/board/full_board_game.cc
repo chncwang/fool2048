@@ -5,15 +5,17 @@
  *      Author: chncwang
  */
 
-#include "full_board_game.h"
+#include "board/full_board_game.h"
 
-#include "board/number.h"
+#include "board/def.h"
 #include "board/board_helper.h"
-#include "full_board.h"
-#include "location_helper.h"
+#include "board/full_board.h"
+#include "board/location/location_helper.h"
 
 namespace fool2048 {
 namespace board {
+
+using location::Orientation;
 
 bool HasGameEnded(const FullBoard &full_board) {
   bool ended = true;

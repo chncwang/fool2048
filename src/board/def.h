@@ -13,7 +13,8 @@
 namespace fool2048 {
 namespace board {
 
-typedef int16_t Number;
+typedef uint16_t Number;
+typedef uint32_t HashKey;
 
 }
 }
