@@ -76,8 +76,8 @@ TEST_F(BoardTest, ForEachLocation) {
   static const int kSetNumber = 1024;
   Board board;
 
-  for (int y = 0; y < Board::kBoardLength; ++y) {
-    for (int x = 0; x < Board::kBoardLength; ++x) {
+  for (int y = 0; y < kBoardLength; ++y) {
+    for (int x = 0; x < kBoardLength; ++x) {
       SetBoardNumber(&board, x, y, kSetNumber);
     }
   }
@@ -88,8 +88,8 @@ TEST_F(BoardTest, ForEachLocation) {
 
   static const int kDoubleSetNumber = kSetNumber << 1;
 
-  for (int y = 0; y < Board::kBoardLength; ++y) {
-    for (int x = 0; x < Board::kBoardLength; ++x) {
+  for (int y = 0; y < kBoardLength; ++y) {
+    for (int x = 0; x < kBoardLength; ++x) {
       ASSERT_EQ(GetBoardNumber(board, x, y), kDoubleSetNumber);
     }
   }

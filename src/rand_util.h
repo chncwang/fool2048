@@ -8,6 +8,8 @@
 #ifndef SRC_RAND_UTIL_H_
 #define SRC_RAND_UTIL_H_
 
+#include <cassert>
+
 #include <chrono>
 #include <typeinfo>
 #include <random>
@@ -22,6 +24,7 @@ extern std::mt19937 gen;
 
 template <typename T>
 T NextRandomNumber(T upper_bound) {
+  assert(upper_bound > 0);
   std::uniform_int_distribution<T> distribution(0, upper_bound - 1);
   return distribution(gen);
 }

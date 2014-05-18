@@ -7,8 +7,6 @@
 
 #include <cassert>
 
-#include <array>
-
 #include "board/full_board_game.h"
 #include "log_util.h"
 #include "player/moving_randomly_player.h"
@@ -19,10 +17,8 @@ namespace player {
 
 using board::FullBoard;
 using board::HasGameEnded;
-using board::IsMovable;
+using board::MovableOrientations;
 using board::location::Orientation;
-using board::location::ForEachOrientation;
-using std::array;
 using log4cplus::Logger;
 
 namespace {
@@ -37,22 +33,11 @@ Orientation MovingRandomlyPlayer::NextMove(const FullBoard &full_board) const {
 
   LOG_UTIL_DEBUG(LOG, "full_board " << full_board);
 
-  array<Orientation, 4> orientation_arr;
-  int count = 0;
+  auto orientations = MovableOrientations(full_board);
 
-  ForEachOrientation([&full_board, &orientation_arr, &count]
-      (Orientation orientation) {
-    LOG_UTIL_DEBUG(LOG, "for each loop - orientation " << orientation);
-    if (IsMovable(full_board, orientation)) {
-      LOG_UTIL_DEBUG(LOG, "movable orientation " << orientation);
-      orientation_arr.at(count++) = orientation;
-    }
-  });
-
-  LOG_UTIL_DEBUG(LOG, "count " << count);
-  int rand = NextRandomNumber(count);
+  int rand = NextRandomNumber(orientations.size());
   LOG_UTIL_DEBUG(LOG, "rand " << rand);
-  return orientation_arr.at(rand);
+  return orientations.at(rand);
 }
 
 } /* namespace player */

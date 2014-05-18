@@ -19,8 +19,8 @@ enum Orientation {
 };
 
 inline Orientation OppositeOrientation(Orientation orientation) {
-  static const Orientation kTable[4] = { Orientation::kLeft, Orientation::kDown,
-      Orientation::kRight, Orientation::kUp };
+  static const Orientation kTable[4] = {Orientation::kLeft, Orientation::kDown,
+    Orientation::kRight, Orientation::kUp};
   return kTable[orientation];
 }
 

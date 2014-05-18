@@ -17,7 +17,7 @@ Logger LOG = Logger::getInstance("fool2048.player.AddingNumberRandomlyPlayerTest
 
 }
 
-TEST(DefaultAddingNumberPlayerTest, NextMove) {
+TEST(AddingNumberRandomlyPlayerTest, NextMove) {
   InitLogConfig();
 
   FullBoard full_board;

@@ -75,8 +75,8 @@ ostream& operator<<(std::ostream &out,
       endl;
   out << "location_factors_" << endl;
 
-  for (int y = 0; y < Board::kBoardLength; ++y) {
-    for (int x = 0; x < Board::kBoardLength; ++x) {
+  for (int y = 0; y < kBoardLength; ++y) {
+    for (int x = 0; x < kBoardLength; ++x) {
       out << "x " << x << " y " << y << endl;
       const auto &map = zobrist_hash_factor.location_factors_.at(y).at(x);
       for (auto &kv : map) {

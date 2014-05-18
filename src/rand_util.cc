@@ -7,8 +7,6 @@
 
 #include "rand_util.h"
 
-#include <cassert>
-
 #include <chrono>
 #include <random>
 

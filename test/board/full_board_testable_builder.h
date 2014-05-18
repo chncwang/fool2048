@@ -12,7 +12,7 @@ using std::move;
 
 namespace {
 
-inline FullBoardTestable&& Build(const FullBoardTestable::Numbers &numbers) {
+FullBoardTestable Build(const FullBoardTestable::Numbers &numbers) {
   FullBoardTestable full_board;
   full_board.Init(numbers);
   return move(full_board);
@@ -20,7 +20,7 @@ inline FullBoardTestable&& Build(const FullBoardTestable::Numbers &numbers) {
 
 }
 
-inline FullBoardTestable&& BuildA() {
+inline FullBoardTestable BuildA() {
   static FullBoardTestable::Numbers numbers = {
     2, 4, 2, 4,
     4, 2, 4, 2,
@@ -28,10 +28,10 @@ inline FullBoardTestable&& BuildA() {
     4, 2, 4, 2
   };
 
-  return move(Build(numbers));
+  return Build(numbers);
 }
 
-inline FullBoardTestable&& BuildB() {
+inline FullBoardTestable BuildB() {
   static FullBoardTestable::Numbers numbers = {
     2, 4, 2, 4,
     4, 2, 4, 2,
@@ -39,10 +39,10 @@ inline FullBoardTestable&& BuildB() {
     4, 2, 4, 0,
   };
 
-  return move(Build(numbers));
+  return Build(numbers);
 }
 
-inline FullBoardTestable&& BuildC() {
+inline FullBoardTestable BuildC() {
   static FullBoardTestable::Numbers numbers = {
     2, 4, 2, 4,
     4, 2, 4, 2,
@@ -50,10 +50,10 @@ inline FullBoardTestable&& BuildC() {
     4, 2, 4, 4,
   };
 
-  return move(Build(numbers));
+  return Build(numbers);
 }
 
-inline FullBoardTestable&& BuildD() {
+inline FullBoardTestable BuildD() {
   static FullBoardTestable::Numbers numbers = {
     2, 4, 2, 4,
     4, 2, 4, 2,
@@ -61,10 +61,10 @@ inline FullBoardTestable&& BuildD() {
     4, 2, 2, 2,
   };
 
-  return move(Build(numbers));
+  return Build(numbers);
 }
 
-inline FullBoardTestable&& BuildE() {
+inline FullBoardTestable BuildE() {
   static FullBoardTestable::Numbers numbers = {
     2, 4, 2, 0,
     4, 2, 4, 2,
@@ -72,10 +72,10 @@ inline FullBoardTestable&& BuildE() {
     4, 2, 4, 2,
   };
 
-  return move(Build(numbers));
+  return Build(numbers);
 }
 
-inline FullBoardTestable&& BuildF() {
+inline FullBoardTestable BuildF() {
   static FullBoardTestable::Numbers numbers = {
     0, 4, 2, 2,
     4, 2, 4, 2,
@@ -83,10 +83,10 @@ inline FullBoardTestable&& BuildF() {
     4, 2, 4, 2,
   };
 
-  return move(Build(numbers));
+  return Build(numbers);
 }
 
-inline FullBoardTestable&& BuildG() {
+inline FullBoardTestable BuildG() {
   static FullBoardTestable::Numbers numbers = {
     0, 4, 2, 4,
     4, 2, 4, 2,
@@ -94,10 +94,10 @@ inline FullBoardTestable&& BuildG() {
     4, 2, 4, 2,
   };
 
-  return move(Build(numbers));
+  return Build(numbers);
 }
 
-inline FullBoardTestable&& BuildH() {
+inline FullBoardTestable BuildH() {
   static FullBoardTestable::Numbers numbers = {
     2, 4, 2, 4,
     4, 2, 4, 2,
@@ -105,7 +105,7 @@ inline FullBoardTestable&& BuildH() {
     0, 2, 4, 2,
   };
 
-  return move(Build(numbers));
+  return Build(numbers);
 }
 
 }

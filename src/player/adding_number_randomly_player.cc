@@ -9,6 +9,7 @@
 
 #include "board/adding_number_move.h"
 #include "board/board.h"
+#include "board/def.h"
 #include "board/full_board.h"
 #include "board/full_board_helper.h"
 #include "rand_util.h"
@@ -20,6 +21,7 @@ using board::AddingNumberMove;
 using board::Board;
 using board::FullBoard;
 using board::location::Location;
+using board::kBoardLengthSquare;
 
 namespace {
 
@@ -33,7 +35,7 @@ AddingNumberRandomlyPlayer::NextMove(const FullBoard &full_board) const {
   Location location;
 
   int count = 0;
-  for (int i = 0; i < Board::kBoardLengthSquare; ++i) {
+  for (int i = 0; i < kBoardLengthSquare; ++i) {
     if (GetFullBoardNumber(full_board, i) == Board::kEmpty) {
       if (count++ == rand) {
         location.Copy(Board::ToLocation(i));

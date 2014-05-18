@@ -8,6 +8,9 @@
 #ifndef SRC_BOARD_FULL_BOARD_GAME_H_
 #define SRC_BOARD_FULL_BOARD_GAME_H_
 
+#include <vector>
+
+#include "board/def.h"
 #include "board/location/orientation.h"
 
 namespace fool2048 {
@@ -18,6 +21,9 @@ class FullBoard;
 bool HasGameEnded(const FullBoard &full_board);
 
 bool IsMovable(const FullBoard &full_board, location::Orientation orientation);
+
+std::vector<location::Orientation>
+MovableOrientations(const FullBoard &full_board);
 
 }
 }

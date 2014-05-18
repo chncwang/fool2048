@@ -12,7 +12,7 @@
 #include <map>
 #include <ostream>
 
-#include "board/board.h"
+#include "../def.h"
 #include "board/def.h"
 #include "board/force.h"
 
@@ -43,8 +43,9 @@ private:
   operator<<(std::ostream &out, const ZobristHashFactor& zobrist_hash_factor);
 
   std::array<HashKey, 2> force_factors_;
-  std::array<std::array<std::map<Number, HashKey>, Board::kBoardLength>,
-  Board::kBoardLength> location_factors_;
+  std::array<std::array<std::map<Number, HashKey>, kBoardLength>, kBoardLength> location_factors_;
+
+  DISALLOW_COPY_AND_ASSIGN(ZobristHashFactor);
 };
 
 } /* namespace board */

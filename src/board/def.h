@@ -16,6 +16,10 @@ namespace board {
 typedef uint16_t Number;
 typedef uint32_t HashKey;
 
+constexpr int kBoardLength = 4;
+constexpr int kBoardLengthSquare = kBoardLength * kBoardLength;
+constexpr int kLargeSideXY = kBoardLength - 1;
+
 }
 }
 

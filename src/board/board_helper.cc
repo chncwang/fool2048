@@ -16,11 +16,10 @@ using location::Location;
 using location::Orientation;
 
 namespace {
-  static const bool is_orientation_to_large_side[4] = {
-    true, false, false, true
-  };
+static const bool is_orientation_to_large_side[4] = {
+  true, false, false, true
+};
 }
-
 
 Number GetBoardNumber(const Board &board, int index) {
   return board.GetNumber(Board::ToLocation(index));
@@ -35,11 +34,11 @@ void SetBoardNumber(Board *board, int x, int y, Number number) {
 }
 
 int InnerIndexBegin(Orientation orientation) {
-  return is_orientation_to_large_side[orientation] ? Board::kLargeSideXY : 0;
+  return is_orientation_to_large_side[orientation] ? kLargeSideXY : 0;
 }
 
 int InnerIndexEnd(Orientation orientation) {
-  return is_orientation_to_large_side[orientation] ? -1 : Board::kBoardLength;
+  return is_orientation_to_large_side[orientation] ? -1 : kBoardLength;
 }
 
 int InnerIndexStep(Orientation orientation) {

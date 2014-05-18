@@ -37,9 +37,10 @@ public:
   FullBoard(FullBoard &&full_board) = default;
   ~FullBoard() = default;
 
-  void Copy(const FullBoard &full_board) {
-    board_.Copy(full_board.board_);
-    empty_number_count_ = full_board.empty_number_count_;
+  void Copy(const FullBoard &full_board);
+
+  const Board &GetBoard() const {
+    return board_;
   }
 
   Number GetNumber(const location::Location &location) const {
@@ -58,6 +59,8 @@ public:
   void PlayMovingMove(location::Orientation orientation);
 
   HashKey ZobristHash() const;
+
+  int ResultLevel() const;
 
 protected:
 

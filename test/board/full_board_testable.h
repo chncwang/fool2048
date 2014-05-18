@@ -17,10 +17,10 @@ namespace board {
 
 class FullBoardTestable : public FullBoard {
 public:
-  typedef std::array<std::array<Number, Board::kBoardLength>,
-      Board::kBoardLength> Numbers;
+  typedef std::array<std::array<Number, kBoardLength>, kBoardLength> Numbers;
 
   FullBoardTestable() = default;
+  FullBoardTestable(FullBoardTestable &&) = default;
   ~FullBoardTestable() = default;
 
   void Init(const Numbers &numbers);

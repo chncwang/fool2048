@@ -29,9 +29,9 @@ class Location;
 
 class Board {
 public:
-  static const int kBoardLength = 4;
-  static const int kBoardLengthSquare = kBoardLength * kBoardLength;
-  static const int kLargeSideXY = kBoardLength - 1;
+  //  static const int kBoardLength;
+  //  static const int kBoardLengthSquare;
+  //  static const int kLargeSideXY;
   static const Number kEmpty;
 
   Board();
@@ -68,7 +68,7 @@ private:
   friend ostream& operator<<(ostream &out, const Board &board);
   friend bool IsEqual(const Board &a, const Board &b);
 
-  std::array<std::array<Number, kBoardLength>, kBoardLength> numbers_;
+  std::array<std::array<Number, 4>, 4> numbers_;
 
   DISALLOW_COPY_AND_ASSIGN(Board);
 };

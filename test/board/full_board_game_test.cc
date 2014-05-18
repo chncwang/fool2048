@@ -18,15 +18,25 @@ namespace board {
 
 using location::Orientation;
 using location::ForEachOrientation;
+using log4cplus::Logger;
 
 namespace {
 
 class FullBoardGameTest : public ExampleBoardsTest {
+
+ protected:
+
+  void SetUp() {
+    ExampleBoardsTest::SetUp();
+  }
 };
+
+Logger LOG = Logger::getInstance("fool2048.board.FullBoardGameTest");
 
 }
 
 TEST_F(FullBoardGameTest, HasGameEnded) {
+  LOG_UTIL_DEBUG(LOG, "a_ " << a_);
   ASSERT_TRUE(HasGameEnded(a_));
   ASSERT_FALSE(HasGameEnded(b_));
   ASSERT_FALSE(HasGameEnded(c_));
@@ -38,20 +48,20 @@ TEST_F(FullBoardGameTest, HasGameEnded) {
 }
 
 TEST_F(FullBoardGameTest, IsMovable) {
-  ForEachOrientation([&](Orientation orientation) {
-      ASSERT_FALSE(IsMovable(a_, orientation));
-  });
+  for (int i = 0; i < 4; ++i) {
+    ASSERT_FALSE(IsMovable(a_, static_cast<Orientation>(i)));
+  }
 
   ASSERT_TRUE(IsMovable(b_, Orientation::kRight));
   ASSERT_FALSE(IsMovable(b_, Orientation::kUp));
   ASSERT_FALSE(IsMovable(b_, Orientation::kLeft));
   ASSERT_TRUE(IsMovable(b_, Orientation::kDown));
 
-  ForEachOrientation([&](Orientation orientation) {
-      ASSERT_TRUE(IsMovable(c_, orientation));
-      ASSERT_TRUE(IsMovable(d_, orientation));
-      ASSERT_TRUE(IsMovable(f_, orientation));
-  });
+  for (int i = 0; i < 4; ++i) {
+    ASSERT_TRUE(IsMovable(c_, static_cast<Orientation>(i)));
+    ASSERT_TRUE(IsMovable(d_, static_cast<Orientation>(i)));
+    ASSERT_TRUE(IsMovable(f_, static_cast<Orientation>(i)));
+  }
 
   ASSERT_TRUE(IsMovable(e_, Orientation::kRight));
   ASSERT_TRUE(IsMovable(e_, Orientation::kUp));

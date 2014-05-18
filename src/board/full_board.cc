@@ -11,6 +11,8 @@
 
 #include "board/adding_number_move.h"
 #include "board/board_helper.h"
+#include "board/full_board_game.h"
+#include "board/number_util.h"
 #include "board/location/location.h"
 #include "board/location/location_helper.h"
 #include "board/zobrist_hash_factor.h"
@@ -31,8 +33,14 @@ const Logger LOG =
 
 }
 
-FullBoard::FullBoard() : empty_number_count_(Board::kBoardLengthSquare),
+FullBoard::FullBoard() : empty_number_count_(kBoardLengthSquare),
     last_force_(Force::kMoving) { }
+
+void FullBoard::Copy(const FullBoard &full_board) {
+  board_.Copy(full_board.board_);
+  empty_number_count_ = full_board.empty_number_count_;
+  last_force_ = full_board.last_force_;
+}
 
 void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
   last_force_ = Force::kAddingNumber;
@@ -43,7 +51,7 @@ void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
 void FullBoard::PlayMovingMove(Orientation orientation) {
   last_force_ = Force::kMoving;
 
-  for (int outter_i = 0; outter_i < Board::kBoardLength; ++outter_i) {
+  for (int outter_i = 0; outter_i < kBoardLength; ++outter_i) {
     Location last_number_location;
     bool merge_available = false;
     bool first_number_moved = false;
@@ -104,6 +112,20 @@ HashKey FullBoard::ZobristHash() const {
   return hash_key;
 }
 
+int FullBoard::ResultLevel() const {
+  assert(HasGameEnded(*this));
+
+  Number max = 0;
+  board_.ForEachLocation([&max](const Location &location,
+      Number number) {
+    if (max < number) {
+      max = number;
+    }
+  });
+
+  return GetLevel(max);
+}
+
 void FullBoard::SetNumberAsDouble(const Location &location) {
   ValidateBeforeSetDouble(location);
   board_.SetNumber(location, board_.GetNumber(location) << 1);
@@ -123,11 +145,11 @@ ostream& operator<<(ostream & out, const FullBoard &full_board) {
 }
 
 bool IsEqual(const FullBoard &a, const FullBoard &b) {
-  bool result = IsEqual(a.board_, b.board_);
-  if (result) {
+  bool is_board_equal = IsEqual(a.board_, b.board_);
+  if (is_board_equal) {
     assert(a.empty_number_count_ == b.empty_number_count_);
   }
-  return result;
+  return is_board_equal && a.last_force_ == b.last_force_;
 }
 
 }
