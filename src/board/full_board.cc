@@ -34,12 +34,13 @@ const Logger LOG =
 }
 
 FullBoard::FullBoard() : empty_number_count_(kBoardLengthSquare),
-    last_force_(Force::kMoving) { }
+    last_force_(Force::kMoving), moving_move_count_(0) { }
 
 void FullBoard::Copy(const FullBoard &full_board) {
   board_.Copy(full_board.board_);
   empty_number_count_ = full_board.empty_number_count_;
   last_force_ = full_board.last_force_;
+  moving_move_count_ = full_board.moving_move_count_;
 }
 
 void FullBoard::PlayAddingNumberMove(const AddingNumberMove &move) {
@@ -98,6 +99,8 @@ void FullBoard::PlayMovingMove(Orientation orientation) {
       }
     }
   }
+
+  ++moving_move_count_;
 }
 
 HashKey FullBoard::ZobristHash() const {
@@ -126,6 +129,17 @@ int FullBoard::ResultLevel() const {
   return GetLevel(max);
 }
 
+float FullBoard::SquareSum() const {
+  float sum = 0;
+  board_.ForEachLocation([&sum](const Location &location, Number number) {
+    if (number != Board::kEmpty) {
+      sum += number * (float)number;
+    }
+  });
+
+  return sum;
+}
+
 void FullBoard::SetNumberAsDouble(const Location &location) {
   ValidateBeforeSetDouble(location);
   board_.SetNumber(location, board_.GetNumber(location) << 1);
@@ -141,7 +155,8 @@ void FullBoard::ValidateBeforeSetDouble(const Location &location) const {
 ostream& operator<<(ostream & out, const FullBoard &full_board) {
   return out << "[" << full_board.board_ << ", empty_number_count_: "
       << full_board.empty_number_count_ << ", last_force_ " <<
-      full_board.last_force_ << "]";
+      full_board.last_force_ << ", moving_move_count_ " <<
+      full_board.moving_move_count_ << "]";
 }
 
 bool IsEqual(const FullBoard &a, const FullBoard &b) {

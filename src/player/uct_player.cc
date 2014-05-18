@@ -48,20 +48,16 @@ void CheckLastForceIs(const FullBoard &full_board, Force force) {
 }
 
 float GetProfit(const FullBoard &full_board) {
-  static int expected_max_level = GetLevel(2048);
-  int level = full_board.ResultLevel();
+  float profit = full_board.MovingMoveCount();
 
-  float profit = (float)level / expected_max_level;
-
-  LOG_UTIL_DEBUG(LOG, "full_board " << full_board << " level " << level <<
-      " expected_max_level " << expected_max_level << " profit " << profit);
+  LOG_UTIL_DEBUG(LOG, "full_board " << full_board << " profit " << profit);
 
   return profit;
 }
 
 }
 
-const int UctPlayer::kMonteCarloGameCount = 10000;
+const int UctPlayer::kMonteCarloGameCount = 500;
 const HashKey UctPlayer::NodeRecord::kNullHashKey = 0;
 
 Orientation UctPlayer::NextMove(const FullBoard& full_board) const {
@@ -111,12 +107,12 @@ float UctPlayer::NewProfit(board::FullBoard *node,
       node->PlayAddingNumberMove(move);
       Orientation max_ucb_move = MaxUcbMove(*node);
       node->PlayMovingMove(max_ucb_move);
-      float new_profit = NewProfit(node, mc_count);
-      LOG_UTIL_DEBUG(LOG, "new_profit " << new_profit);
+      result = NewProfit(node, mc_count);
+      LOG_UTIL_DEBUG(LOG, "result " << result);
       float previous_profit = node_record->AverageProfit();
-      result = (previous_profit * visited_times + new_profit) /
+      float average_profit = (previous_profit * visited_times + result) /
           (visited_times + 1);
-      node_record->SetAverageProfit(result);
+      node_record->SetAverageProfit(average_profit);
     }
 
     node_record->SetVisitedTimes(visited_times + 1);
@@ -137,8 +133,9 @@ Orientation UctPlayer::BestChild(const board::FullBoard& node) const {
     auto iterator = transposition_table_.find(hash_key);
     assert(iterator != transposition_table_.end());
 
-    LOG_UTIL_INFO(LOG, "orientation " << orientation << " node_record " <<
-        iterator->second);
+    const NodeRecord &node_record = iterator->second;
+    LOG_UTIL_INFO(LOG, "orientation " << orientation << " node_record "
+        << node_record);
 
     int times = iterator->second.VisitedTimes();
     if (times > max) {
@@ -207,7 +204,7 @@ HashKey UctPlayer::ChildHashKey(const FullBoard& node,
 
 float UctPlayer::UcbValue(const UctPlayer::NodeRecord& node_record,
     int visited_time_sum) const {
-  return node_record.AverageProfit() + sqrt(2 * log(visited_time_sum) /
+  return node_record.AverageProfit() / 1000 + sqrt(2 * log(visited_time_sum) /
       node_record.VisitedTimes());
 }
 

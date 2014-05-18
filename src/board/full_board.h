@@ -62,6 +62,12 @@ public:
 
   int ResultLevel() const;
 
+  float SquareSum() const;
+
+  int MovingMoveCount() const {
+    return moving_move_count_;
+  }
+
 protected:
 
   void SetNumber(const location::Location &location, Number number) {
@@ -83,6 +89,7 @@ private:
   Board board_;
   int empty_number_count_;
   Force last_force_;
+  int moving_move_count_;
 
   DISALLOW_COPY_AND_ASSIGN(FullBoard);
 };
